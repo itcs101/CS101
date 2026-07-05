@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="utf-8"?><mxfile host="app.diagrams.net" modified="2025-07-03T06:00:00.000Z" agent="Python" version="22.1.0" type="device">
+  <diagram id="reg-arch-001" name="统一监管报送大数据平台架构图" compressed="false">
+    <mxGraphModel dx="1800" dy="2400" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="2400">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="2" parent="1" vertex="1" style="fontColor=#263238;fontSize=18;align=center;verticalAlign=top;opacity=100;strokeColor=none;whiteSpace=wrap;html=1" value="&lt;b&gt;统一监管报送大数据平台架构图&lt;/b&gt;&lt;br&gt;&lt;font color='#666666'&gt;YBT / EAST / BOP / LVT / 1104 · GCP 技术栈 · 全链路血缘&lt;/font&gt;">
+          <mxGeometry x="400" y="10" width="1000" height="45" as="geometry"/>
+          
+        </mxCell>
+        <mxCell id="3" parent="1" vertex="1" style="fontColor=white;fontSize=13;align=left;verticalAlign=top;opacity=100;fillColor=#263238;rounded=1;strokeColor=#263238;fontStyle=1;swimlane=1;startSize=30;fontStyle=1;whiteSpace=wrap;html=1;" value="① 源业务系统 (Source Systems)">
+          <mxGeometry x="50" y="70" width="1700" height="155" as="geometry"/>
+          
+        </mxCell>
+        <mxCell id="4" parent="3" vertex="1" style="fontColor=white;fontSize=10;align=left;verticalAlign=top;opacity=100;fillColor=#1565C0;rounded=1;strokeColor=#0D47A1;whiteSpace=wrap;html=1" value="核心系统 Core Banking">
+          <mxGeometry x="80" y="100" width="190" height="85" as="geometry"/>
+          
+        </mxCell>
+        <mxCell id="5" parent="3" vertex="1" style="fontColor=white;fontSize=10;align=left;verticalAlign=top;opacity=100;fillColor=#1565C0;rounded=1;strokeColor=#0D47A1;whiteSpace=wrap;html=1" value="信贷系统 Loan System">
+          <mxGeometry x="300" y="100" width="190" height="85" as="geometry"/>
+          
+        </mxCell>
+        <mxCell id="6" parent="3" vertex="1" style="fontColor=white;fontSize=10;align=left;verticalAlign=top;opacity=100;fillColor=#1565C0;rounded=1;strokeColor=#0D47A1;whiteSpace=wrap;html=1" value="国际结算 Intl Settlement">
+          <mxGeometry x="520" y="100" width="190" height="85" as="geometry"/>
+          
+        </mxCell>
+        <mxCell id="7" parent="3" vertex="1" style="fontColor=white;fontSize=10;align=left;verticalAlign=top;opacity=100;fillColor=#1565C0;rounded=1;strokeColor=#0D47A1;whiteSpace=wrap;html=1" value="CIF 客户主数据">
+          <mxGeometry x="740" y="100" width="190" height="85" as="geometry"/>
+          
+        </mxCell>
+        <mxCell id="8" parent="3" vertex="1" style="fontColor=white;fontSize=10;align=left;verticalAlign=top;opacity=100;fillColor=#1565C0;rounded=1;strokeColor=#0D47A1;whiteSpace=wrap;html=1" value="理财系统 Wealth">
+          <mxGeometry x="960" y="100" width="190" height="85" as="geometry"/>
+          
+        </mxCell>
+        <mxCell id="9" parent="3" vertex="1" style="fontColor=white;fontSize=10;align=left;verticalAlign=top;opacity=100;fillColor=#1565C0;rounded=1;strokeColor=#0D47A1;whiteSpace=wrap;html=1" value="总账 General Ledger">
+          <mxGeometry x="1180" y="100" width="190" height="85" as="geometry"/>
+          
+        </mxCell>
+        <mxCell id="10" parent="3" vertex="1" style="fontColor=white;fontSize=10;align=left;verticalAlign=top;opacity=100;fillColor=#1565C0;rounded=1;strokeColor=#0D47A1;whiteSpace=wrap;html=1" value="渠道系统 Channels">
+          <mxGeometry x="1400" y="100" width="190" height="85" as="geometry"/>
+          
+        </mxCell>
+        <mxCell id="11" parent="3" vertex="1" style="fontColor=white;fontSize=10;align=left;verticalAlign=top;opacity=100;fillColor=#1565C0;rounded=1;strokeColor=#0D47A1;whiteSpace=wrap;html=1" value="其他 票据/同业/资金池">
+          <mxGeometry x="1620" y="100" width="190" height="85" as="geometry"/>
+          
+        </mxCell>
+        <mxCell id="12" parent="1" vertex="1" style="fontColor=white;fontSize=13;align=left;verticalAlign=top;opacity=100;fillColor=#1565C0;rounded=1;strokeColor=#1565C0;fontStyle=1;swimlane=1;startSize=30;fontStyle=1;whiteSpace=wrap;html=1;" value="② 贴源层 ODS — GCP Dataflow 采集 + Cloud DLP PII 脱敏">
+          <mxGeometry x="50" y="245" width="1700" height="230" as="geometry"/>
+          
+        </mxCell>
+        <mxCell id="13" parent="12" vertex="1" style="fontColor=#0D47A1;fontSize=10;align=left;verticalAlign=top;opacity=100;fillColor=#E3F2FD;rounded=1;strokeColor=#1565C0;whiteSpace=wrap;html=1" value="&lt;b&gt;Dataflow Pipeline&lt;/b&gt;&lt;br&gt;批量 Sqoop / CDC → Pub/Sub → Dataflow">
+          <mxGeometry x="80" y="280" width="400" height="60" as="geometry"/>
+          
+        </mxCell>
+        <mxCell id="14" parent="12" vertex="1" style="fontColor=#0D47A1;fontSize=10;align=left;verticalAlign=top;opacity=100;fillColor=#E3F2FD;rounded=1;strokeColor=#1565C0;whiteSpace=wrap;html=1" value="&lt;b&gt;Cloud DLP&lt;/b&gt;&lt;br&gt;PII 前置脱敏: 证件号/户名/账号">
+          <mxGeometry x="530" y="280" width="280" height="60" as="geometry"/>
+          
+        </mxCell>
+        <mxCell id="15" parent="12" vertex="1" style="fontColor=#0D47A1;fontSize=9;align=left;verticalAlign=top;opacity=100;fillColor=#E3F2FD;rounded=1;strokeColor=#1565C0;whiteSpace=wrap;html=1" value="&lt;b&gt;schema: ods_core&lt;/b&gt;&lt;br&gt;ods_core_trans_di ods_deposit_di">
+          <mxGeometry x="880" y="275" width="210" height="85" as="geometry"/>
+          
+        </mxCell>
+        <mxCell id="16" parent="12" vertex="1" style="fontColor=#0D47A1;fontSize=9;align=left;verticalAlign=top;opacity=100;fillColor=#E3F2FD;rounded=1;strokeColor=#1565C0;whiteSpace=wrap;html=1" value="&lt;b&gt;schema: ods_loan&lt;/b&gt;&lt;br&gt;ods_loan_contract_di ods_loan_repay_di">
+          <mxGeometry x="1120" y="275" width="210" height="85" as="geometry"/>
+          
+        </mxCell>
+        <mxCell id="17" parent="12" vertex="1" style="fontColor=#0D47A1;fontSize=9;align=left;verticalAlign=top;opacity=100;fillColor=#E3F2FD;rounded=1;strokeColor=#1565C0;whiteSpace=wrap;html=1" value="&lt;b&gt;schema: ods_forex&lt;/b&gt;&lt;br&gt;ods_forex_swift_di ods_bop_declare_di">
+          <mxGeometry x="1360" y="275" width="210" height="85" as="geometry"/>
+          
+        </mxCell>
+        <mxCell id="18" parent="12" vertex="1" style="fontColor=#0D47A1;fontSize=9;align=left;verticalAlign=top;opacity=100;fillColor=#E3F2FD;rounded=1;strokeColor=#1565C0;whiteSpace=wrap;html=1" value="&lt;b&gt;schema: ods_cif_others&lt;/b&gt;&lt;br&gt;ods_cust_info_df ods_wealth_di / ods_gl_di">
+          <mxGeometry x="1600" y="275" width="210" height="85" as="geometry"/>
+          
+        </mxCell>
+        <mxCell id="19" parent="12" edge="1" style="fontColor=#333333;fontSize=9;align=left;verticalAlign=top;opacity=100;strokeColor=none;strokeColor=#1565C0;strokeWidth=1;endArrow=classic;startArrow=none;dashed=1;dashPattern=4 4;" source="4" target="13"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="20" parent="12" edge="1" style="fontColor=#333333;fontSize=9;align=left;verticalAlign=top;opacity=100;strokeColor=none;strokeColor=#1565C0;strokeWidth=1;endArrow=classic;startArrow=none;dashed=1;dashPattern=4 4;" source="5" target="13"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="21" parent="12" edge="1" style="fontColor=#333333;fontSize=9;align=left;verticalAlign=top;opacity=100;strokeColor=none;strokeColor=#1565C0;strokeWidth=1;endArrow=classic;startArrow=none;dashed=1;dashPattern=4 4;" source="6" target="13"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="22" parent="12" edge="1" style="fontColor=#333333;fontSize=9;align=left;verticalAlign=top;opacity=100;strokeColor=none;strokeColor=#1565C0;strokeWidth=1;endArrow=classic;startArrow=none;dashed=1;dashPattern=4 4;" source="7" target="13"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="23" parent="12" edge="1" style="fontColor=#333333;fontSize=9;align=left;verticalAlign=top;opacity=100;strokeColor=none;strokeColor=#1565C0;strokeWidth=1;endArrow=classic;startArrow=none;dashed=1;dashPattern=4 4;" source="8" target="13"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="24" parent="12" edge="1" style="fontColor=#333333;fontSize=9;align=left;verticalAlign=top;opacity=100;strokeColor=none;strokeColor=#1565C0;strokeWidth=1;endArrow=classic;startArrow=none;dashed=1;dashPattern=4 4;" source="9" target="13"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="25" parent="12" edge="1" style="fontColor=#333333;fontSize=9;align=left;verticalAlign=top;opacity=100;strokeColor=none;strokeColor=#1565C0;strokeWidth=1;endArrow=classic;startArrow=none;dashed=1;dashPattern=4 4;" source="10" target="13"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="26" parent="12" edge="1" style="fontColor=#333333;fontSize=9;align=left;verticalAlign=top;opacity=100;strokeColor=none;strokeColor=#1565C0;strokeWidth=1;endArrow=classic;startArrow=none;dashed=1;dashPattern=4 4;" source="11" target="13"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="27" parent="12" edge="1" style="fontColor=#333333;fontSize=9;align=left;verticalAlign=top;opacity=100;strokeColor=none;strokeColor=#1565C0;strokeWidth=2;endArrow=classic;startArrow=none;" source="13" target="14" value="脱敏">
+          
+        <mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="28" parent="12" edge="1" style="fontColor=#333333;fontSize=9;align=left;verticalAlign=top;opacity=100;strokeColor=none;strokeColor=#1565C0;strokeWidth=1;endArrow=classic;startArrow=none;" source="14" target="15"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="29" parent="12" edge="1" style="fontColor=#333333;fontSize=9;align=left;verticalAlign=top;opacity=100;strokeColor=none;strokeColor=#1565C0;strokeWidth=1;endArrow=classic;startArrow=none;" source="14" target="16"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="30" parent="12" edge="1" style="fontColor=#333333;fontSize=9;align=left;verticalAlign=top;opacity=100;strokeColor=none;strokeColor=#1565C0;strokeWidth=1;endArrow=classic;startArrow=none;" source="14" target="17"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="31" parent="12" edge="1" style="fontColor=#333333;fontSize=9;align=left;verticalAlign=top;opacity=100;strokeColor=none;strokeColor=#1565C0;strokeWidth=1;endArrow=classic;startArrow=none;" source="14" target="18"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="32" parent="1" vertex="1" style="fontColor=white;fontSize=13;align=left;verticalAlign=top;opacity=100;fillColor=#6A1B9A;rounded=1;strokeColor=#6A1B9A;fontStyle=1;swimlane=1;startSize=30;fontStyle=1;whiteSpace=wrap;html=1;" value="③ 公共维度层 DIM（全报送共享 · SCD Type-2 拉链表）">
+          <mxGeometry x="50" y="500" width="1700" height="160" as="geometry"/>
+          
+        </mxCell>
+        <mxCell id="33" parent="32" vertex="1" style="fontColor=#6A1B9A;fontSize=10;align=left;verticalAlign=top;opacity=100;fillColor=#F3E5F5;rounded=1;strokeColor=#6A1B9A;whiteSpace=wrap;html=1" value="&lt;b&gt;dim_cust&lt;/b&gt; (SCD2)&lt;br&gt;&lt;font size='9'&gt;客户: 居民/非居民 行业/国别/证件&lt;/font&gt;">
+          <mxGeometry x="80" y="535" width="210" height="95" as="geometry"/>
+          
+        </mxCell>
+        <mxCell id="34" parent="32" vertex="1" style="fontColor=#6A1B9A;fontSize=10;align=left;verticalAlign=top;opacity=100;fillColor=#F3E5F5;rounded=1;strokeColor=#6A1B9A;whiteSpace=wrap;html=1" value="&lt;b&gt;dim_acct&lt;/b&gt;&lt;br&gt;&lt;font size='9'&gt;账户: 账号→客户→机构 联名/主副卡标记&lt;/font&gt;">
+          <mxGeometry x="310" y="535" width="210" height="95" as="geometry"/>
+          
+        </mxCell>
+        <mxCell id="35" parent="32" vertex="1" style="fontColor=#6A1B9A;fontSize=10;align=left;verticalAlign=top;opacity=100;fillColor=#F3E5F5;rounded=1;strokeColor=#6A1B9A;whiteSpace=wrap;html=1" value="&lt;b&gt;dim_org&lt;/b&gt;&lt;br&gt;&lt;font size='9'&gt;机构: 金融机构标识码 金监局+外管局双码&lt;/font&gt;">
+          <mxGeometry x="540" y="535" width="210" height="95" as="geometry"/>
+          
+        </mxCell>
+        <mxCell id="36" parent="32" vertex="1" style="fontColor=#6A1B9A;fontSize=10;align=left;verticalAlign=top;opacity=100;fillColor=#F3E5F5;rounded=1;strokeColor=#6A1B9A;whiteSpace=wrap;html=1" value="&lt;b&gt;dim_prod&lt;/b&gt;&lt;br&gt;&lt;font size='9'&gt;产品: 贷款/存款/ 同业/理财 会计科目&lt;/font&gt;">
+          <mxGeometry x="770" y="535" width="210" height="95" as="geometry"/>
+          
+        </mxCell>
+        <mxCell id="37" parent="32" vertex="1" style="fontColor=#6A1B9A;fontSize=10;align=left;verticalAlign=top;opacity=100;fillColor=#F3E5F5;rounded=1;strokeColor=#6A1B9A;whiteSpace=wrap;html=1" value="&lt;b&gt;dim_industry&lt;/b&gt;&lt;br&gt;&lt;font size='9'&gt;行业分类: GB/T → 一表通 → 1104&lt;/font&gt;">
+          <mxGeometry x="1000" y="535" width="210" height="95" as="geometry"/>
+          
+        </mxCell>
+        <mxCell id="38" parent="32" vertex="1" style="fontColor=#6A1B9A;fontSize=10;align=left;verticalAlign=top;opacity=100;fillColor=#F3E5F5;rounded=1;strokeColor=#6A1B9A;whiteSpace=wrap;html=1" value="&lt;b&gt;dim_country&lt;/b&gt;&lt;br&gt;&lt;font size='9'&gt;国别代码: ISO → 外管局 敏感国别&lt;/font&gt;">
+          <mxGeometry x="1230" y="535" width="210" height="95" as="geometry"/>
+          
+        </mxCell>
+        <mxCell id="39" parent="32" vertex="1" style="fontColor=#6A1B9A;fontSize=10;align=left;verticalAlign=top;opacity=100;fillColor=#F3E5F5;rounded=1;strokeColor=#6A1B9A;whiteSpace=wrap;html=1" value="&lt;b&gt;dim_dict_reg&lt;/b&gt;&lt;br&gt;&lt;font size='9'&gt;监管码值映射: 行内→YBT/EAST/ BOP/1104 四向&lt;/font&gt;">
+          <mxGeometry x="1460" y="535" width="210" height="95" as="geometry"/>
+          
+        </mxCell>
+        <mxCell id="40" parent="1" vertex="1" style="fontColor=white;fontSize=13;align=left;verticalAlign=top;opacity=100;fillColor=#2E7D32;rounded=1;strokeColor=#2E7D32;fontStyle=1;swimlane=1;startSize=30;fontStyle=1;whiteSpace=wrap;html=1;" value="④ 标准明细层 DWD（企业级业务过程事实表 · YBT 10 主题为骨架）— GCP Dataproc (Spark)">
+          <mxGeometry x="50" y="680" width="1700" height="310" as="geometry"/>
+          
+        </mxCell>
+        <mxCell id="41" parent="40" vertex="1" style="fontColor=#2E7D32;fontSize=10;align=left;verticalAlign=top;opacity=100;fillColor=#E8F5E9;rounded=1;strokeColor=#2E7D32;whiteSpace=wrap;html=1" value="&lt;b&gt;Dataproc (Managed Spark)&lt;/b&gt;&lt;br&gt;DATAPROC_LINEAGE_ENABLED + OpenLineage Spark Plugin&lt;br&gt;联名拆分 | SWIFT 本金/费用 | 冲正配对 | 钞汇分离 | 资金池归集">
+          <mxGeometry x="80" y="720" width="450" height="65" as="geometry"/>
+          
+        </mxCell>
+        <mxCell id="42" parent="40" vertex="1" style="fontColor=#2E7D32;fontSize=9;align=left;verticalAlign=top;opacity=100;fillColor=#E8F5E9;rounded=1;strokeColor=#2E7D32;whiteSpace=wrap;html=1" value="&lt;b&gt;dwd_loan_contract_di&lt;/b&gt;&lt;br&gt;&lt;font size='9'&gt;贷款合同/借据 合同金额/期限/ 五级分类/担保方式&lt;/font&gt;">
+          <mxGeometry x="80" y="810" width="210" height="90" as="geometry"/>
+          
+        </mxCell>
+        <mxCell id="43" parent="40" vertex="1" style="fontColor=#2E7D32;fontSize=9;align=left;verticalAlign=top;opacity=100;fillColor=#E8F5E9;rounded=1;strokeColor=#2E7D32;whiteSpace=wrap;html=1" value="&lt;b&gt;dwd_loan_disburse_di&lt;/b&gt;&lt;br&gt;&lt;font size='9'&gt;放款明细 放款金额/日期/ 渠道&lt;/font&gt;">
+          <mxGeometry x="310" y="810" width="210" height="90" as="geometry"/>
+          
+        </mxCell>
+        <mxCell id="44" parent="40" vertex="1" style="fontColor=#2E7D32;fontSize=9;align=left;verticalAlign=top;opacity=100;fillColor=#E8F5E9;rounded=1;strokeColor=#2E7D32;whiteSpace=wrap;html=1" value="&lt;b&gt;dwd_loan_repay_di&lt;/b&gt;&lt;br&gt;&lt;font size='9'&gt;还款/结息 本金/利息/逾期/ 核销/冲正&lt;/font&gt;">
+          <mxGeometry x="540" y="810" width="210" height="90" as="geometry"/>
+          
+        </mxCell>
+        <mxCell id="45" parent="40" vertex="1" style="fontColor=#2E7D32;fontSize=9;align=left;verticalAlign=top;opacity=100;fillColor=#E8F5E9;rounded=1;strokeColor=#2E7D32;whiteSpace=wrap;html=1" value="&lt;b&gt;dwd_deposit_acct_di&lt;/b&gt;&lt;br&gt;&lt;font size='9'&gt;存款账户 余额/类型/币种 钞汇标记&lt;/font&gt;">
+          <mxGeometry x="770" y="810" width="210" height="90" as="geometry"/>
+          
+        </mxCell>
+        <mxCell id="46" parent="40" vertex="1" style="fontColor=#2E7D32;fontSize=9;align=left;verticalAlign=top;opacity=100;fillColor=#E8F5E9;rounded=1;strokeColor=#2E7D32;whiteSpace=wrap;html=1" value="&lt;b&gt;dwd_fx_payment_di&lt;/b&gt;&lt;br&gt;&lt;font size='9'&gt;涉外收付款 SWIFT/跨境/ 对手国别/BOP标记&lt;/font&gt;">
+          <mxGeometry x="1000" y="810" width="210" height="90" as="geometry"/>
+          
+        </mxCell>
+        <mxCell id="47" parent="40" vertex="1" style="fontColor=#2E7D32;fontSize=9;align=left;verticalAlign=top;opacity=100;fillColor=#E8F5E9;rounded=1;strokeColor=#2E7D32;whiteSpace=wrap;html=1" value="&lt;b&gt;dwd_aml_trans_detail_di&lt;/b&gt;&lt;br&gt;&lt;font size='9'&gt;资金交易 现金/转账/跨境 AML阈值标记&lt;/font&gt;">
+          <mxGeometry x="1230" y="810" width="210" height="90" as="geometry"/>
+          
+        </mxCell>
+        <mxCell id="48" parent="40" vertex="1" style="fontColor=#2E7D32;fontSize=9;align=left;verticalAlign=top;opacity=100;fillColor=#E8F5E9;rounded=1;strokeColor=#2E7D32;whiteSpace=wrap;html=1" value="&lt;b&gt;dwd_interbank_deal_di&lt;/b&gt;&lt;br&gt;&lt;font size='9'&gt;同业交易 拆放/买入返售 对手机构&lt;/font&gt;">
+          <mxGeometry x="1460" y="810" width="210" height="90" as="geometry"/>
+          
+        </mxCell>
+        <mxCell id="49" parent="40" vertex="1" style="fontColor=#2E7D32;fontSize=9;align=left;verticalAlign=top;opacity=100;strokeColor=none;fontStyle=1;whiteSpace=wrap;html=1" value="&lt;b&gt;DWD 关键字段：&lt;/b&gt;biz_event_no（归并号）| trans_amt + trans_amt_event（会计/监管双口径）| customer_key + related_cust_key（联名双挂）| mapping_id + rule_version（映射追溯）| is_joint_acct / is_cash / need_bop_declare / need_aml_large">
+          <mxGeometry x="80" y="910" width="1670" height="55" as="geometry"/>
+          
+        </mxCell>
+        <mxCell id="50" parent="40" edge="1" style="fontColor=#333333;fontSize=9;align=left;verticalAlign=top;opacity=100;strokeColor=none;strokeColor=#2E7D32;strokeWidth=1;endArrow=classic;startArrow=none;dashed=1;dashPattern=4 4;" source="15" target="41"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="51" parent="40" edge="1" style="fontColor=#333333;fontSize=9;align=left;verticalAlign=top;opacity=100;strokeColor=none;strokeColor=#2E7D32;strokeWidth=1;endArrow=classic;startArrow=none;dashed=1;dashPattern=4 4;" source="16" target="41"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="52" parent="40" edge="1" style="fontColor=#333333;fontSize=9;align=left;verticalAlign=top;opacity=100;strokeColor=none;strokeColor=#2E7D32;strokeWidth=1;endArrow=classic;startArrow=none;dashed=1;dashPattern=4 4;" source="17" target="41"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="53" parent="40" edge="1" style="fontColor=#333333;fontSize=9;align=left;verticalAlign=top;opacity=100;strokeColor=none;strokeColor=#2E7D32;strokeWidth=1;endArrow=classic;startArrow=none;dashed=1;dashPattern=4 4;" source="18" target="41"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="54" parent="40" edge="1" style="fontColor=#333333;fontSize=9;align=left;verticalAlign=top;opacity=100;strokeColor=none;strokeColor=#6A1B9A;strokeWidth=1;endArrow=classic;startArrow=none;dashed=1;dashPattern=4 4;" source="33" target="41"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="55" parent="40" edge="1" style="fontColor=#333333;fontSize=9;align=left;verticalAlign=top;opacity=100;strokeColor=none;strokeColor=#6A1B9A;strokeWidth=1;endArrow=classic;startArrow=none;dashed=1;dashPattern=4 4;" source="34" target="41"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="56" parent="40" edge="1" style="fontColor=#333333;fontSize=9;align=left;verticalAlign=top;opacity=100;strokeColor=none;strokeColor=#2E7D32;strokeWidth=1;endArrow=classic;startArrow=none;" source="41" target="42"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="57" parent="40" edge="1" style="fontColor=#333333;fontSize=9;align=left;verticalAlign=top;opacity=100;strokeColor=none;strokeColor=#2E7D32;strokeWidth=1;endArrow=classic;startArrow=none;" source="41" target="43"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="58" parent="40" edge="1" style="fontColor=#333333;fontSize=9;align=left;verticalAlign=top;opacity=100;strokeColor=none;strokeColor=#2E7D32;strokeWidth=1;endArrow=classic;startArrow=none;" source="41" target="44"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="59" parent="40" edge="1" style="fontColor=#333333;fontSize=9;align=left;verticalAlign=top;opacity=100;strokeColor=none;strokeColor=#2E7D32;strokeWidth=1;endArrow=classic;startArrow=none;" source="41" target="45"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="60" parent="40" edge="1" style="fontColor=#333333;fontSize=9;align=left;verticalAlign=top;opacity=100;strokeColor=none;strokeColor=#2E7D32;strokeWidth=1;endArrow=classic;startArrow=none;" source="41" target="46"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="61" parent="40" edge="1" style="fontColor=#333333;fontSize=9;align=left;verticalAlign=top;opacity=100;strokeColor=none;strokeColor=#2E7D32;strokeWidth=1;endArrow=classic;startArrow=none;" source="41" target="47"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="62" parent="40" edge="1" style="fontColor=#333333;fontSize=9;align=left;verticalAlign=top;opacity=100;strokeColor=none;strokeColor=#2E7D32;strokeWidth=1;endArrow=classic;startArrow=none;" source="41" target="48"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="63" parent="1" vertex="1" style="fontColor=white;fontSize=13;align=left;verticalAlign=top;opacity=100;fillColor=#E65100;rounded=1;strokeColor=#E65100;fontStyle=1;swimlane=1;startSize=30;fontStyle=1;whiteSpace=wrap;html=1;" value="⑤ 主题汇总层 DWS（监管主题预聚合 · 按业务主题而非按报送）— Dataform / dbt">
+          <mxGeometry x="50" y="1010" width="1700" height="210" as="geometry"/>
+          
+        </mxCell>
+        <mxCell id="64" parent="63" vertex="1" style="fontColor=#E65100;fontSize=9;align=left;verticalAlign=top;opacity=100;fillColor=#FFF3E0;rounded=1;strokeColor=#E65100;whiteSpace=wrap;html=1" value="&lt;b&gt;dws_loan_org_monthly_sum&lt;/b&gt;&lt;br&gt;&lt;font size='9'&gt;贷款机构月度汇总 余额/累放/累收/ 逾期/不良 按五类/行业&lt;/font&gt;">
+          <mxGeometry x="80" y="1050" width="310" height="100" as="geometry"/>
+          
+        </mxCell>
+        <mxCell id="65" parent="63" vertex="1" style="fontColor=#E65100;fontSize=9;align=left;verticalAlign=top;opacity=100;fillColor=#FFF3E0;rounded=1;strokeColor=#E65100;whiteSpace=wrap;html=1" value="&lt;b&gt;dws_deposit_org_daily_sum&lt;/b&gt;&lt;br&gt;&lt;font size='9'&gt;存款机构日汇总 余额/账户数/ 按存款类型/币种&lt;/font&gt;">
+          <mxGeometry x="410" y="1050" width="310" height="100" as="geometry"/>
+          
+        </mxCell>
+        <mxCell id="66" parent="63" vertex="1" style="fontColor=#E65100;fontSize=9;align=left;verticalAlign=top;opacity=100;fillColor=#FFF3E0;rounded=1;strokeColor=#E65100;whiteSpace=wrap;html=1" value="&lt;b&gt;dws_fx_cust_daily_sum&lt;/b&gt;&lt;br&gt;&lt;font size='9'&gt;涉外收付客户日汇总 折USD/CNY/ 收/付方向&lt;/font&gt;">
+          <mxGeometry x="740" y="1050" width="310" height="100" as="geometry"/>
+          
+        </mxCell>
+        <mxCell id="67" parent="63" vertex="1" style="fontColor=#E65100;fontSize=9;align=left;verticalAlign=top;opacity=100;fillColor=#FFF3E0;rounded=1;strokeColor=#E65100;whiteSpace=wrap;html=1" value="&lt;b&gt;dws_aml_cust_daily_sum&lt;/b&gt;&lt;br&gt;&lt;font size='9'&gt;AML客户日累计 现金/转账/ 单笔+日累计金额&lt;/font&gt;">
+          <mxGeometry x="1070" y="1050" width="310" height="100" as="geometry"/>
+          
+        </mxCell>
+        <mxCell id="68" parent="63" vertex="1" style="fontColor=#E65100;fontSize=9;align=left;verticalAlign=top;opacity=100;fillColor=#FFF3E0;rounded=1;strokeColor=#E65100;whiteSpace=wrap;html=1" value="&lt;b&gt;dws_interbank_org_sum&lt;/b&gt;&lt;br&gt;&lt;font size='9'&gt;同业机构汇总 拆放/回购/ 余额/对手&lt;/font&gt;">
+          <mxGeometry x="1400" y="1050" width="310" height="100" as="geometry"/>
+          
+        </mxCell>
+        <mxCell id="69" parent="63" vertex="1" style="fontColor=#E65100;fontSize=10;align=left;verticalAlign=top;opacity=100;fillColor=#FFF3E0;rounded=1;strokeColor=#E65100;whiteSpace=wrap;html=1" value="&lt;b&gt;Dataform&lt;/b&gt; (GCP Native SQL Modeling) + Assertion (总分核对 DWD≡DWS)">
+          <mxGeometry x="80" y="1170" width="500" height="45" as="geometry"/>
+          
+        </mxCell>
+        <mxCell id="70" parent="63" edge="1" style="fontColor=#333333;fontSize=9;align=left;verticalAlign=top;opacity=100;strokeColor=none;strokeColor=#E65100;strokeWidth=1;endArrow=classic;startArrow=none;dashed=1;dashPattern=4 4;" source="42" target="64"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="71" parent="63" edge="1" style="fontColor=#333333;fontSize=9;align=left;verticalAlign=top;opacity=100;strokeColor=none;strokeColor=#E65100;strokeWidth=1;endArrow=classic;startArrow=none;dashed=1;dashPattern=4 4;" source="43" target="64"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="72" parent="63" edge="1" style="fontColor=#333333;fontSize=9;align=left;verticalAlign=top;opacity=100;strokeColor=none;strokeColor=#E65100;strokeWidth=1;endArrow=classic;startArrow=none;dashed=1;dashPattern=4 4;" source="44" target="64"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="73" parent="63" edge="1" style="fontColor=#333333;fontSize=9;align=left;verticalAlign=top;opacity=100;strokeColor=none;strokeColor=#E65100;strokeWidth=1;endArrow=classic;startArrow=none;dashed=1;dashPattern=4 4;" source="45" target="65"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="74" parent="63" edge="1" style="fontColor=#333333;fontSize=9;align=left;verticalAlign=top;opacity=100;strokeColor=none;strokeColor=#E65100;strokeWidth=1;endArrow=classic;startArrow=none;dashed=1;dashPattern=4 4;" source="46" target="66"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="75" parent="63" edge="1" style="fontColor=#333333;fontSize=9;align=left;verticalAlign=top;opacity=100;strokeColor=none;strokeColor=#E65100;strokeWidth=1;endArrow=classic;startArrow=none;dashed=1;dashPattern=4 4;" source="47" target="67"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="76" parent="63" edge="1" style="fontColor=#333333;fontSize=9;align=left;verticalAlign=top;opacity=100;strokeColor=none;strokeColor=#E65100;strokeWidth=1;endArrow=classic;startArrow=none;dashed=1;dashPattern=4 4;" source="48" target="68"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="77" parent="63" edge="1" style="fontColor=#333333;fontSize=9;align=left;verticalAlign=top;opacity=100;strokeColor=none;strokeColor=#E65100;strokeWidth=1;endArrow=classic;startArrow=none;" source="64" target="69"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="78" parent="63" edge="1" style="fontColor=#333333;fontSize=9;align=left;verticalAlign=top;opacity=100;strokeColor=none;strokeColor=#E65100;strokeWidth=1;endArrow=classic;startArrow=none;" source="65" target="69"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="79" parent="63" edge="1" style="fontColor=#333333;fontSize=9;align=left;verticalAlign=top;opacity=100;strokeColor=none;strokeColor=#E65100;strokeWidth=1;endArrow=classic;startArrow=none;" source="66" target="69"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="80" parent="63" edge="1" style="fontColor=#333333;fontSize=9;align=left;verticalAlign=top;opacity=100;strokeColor=none;strokeColor=#E65100;strokeWidth=1;endArrow=classic;startArrow=none;" source="67" target="69"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="81" parent="63" edge="1" style="fontColor=#333333;fontSize=9;align=left;verticalAlign=top;opacity=100;strokeColor=none;strokeColor=#E65100;strokeWidth=1;endArrow=classic;startArrow=none;" source="68" target="69"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="82" parent="1" vertex="1" style="fontColor=white;fontSize=13;align=left;verticalAlign=top;opacity=100;fillColor=#C62828;rounded=1;strokeColor=#C62828;fontStyle=1;swimlane=1;startSize=30;fontStyle=1;whiteSpace=wrap;html=1;" value="⑥ 监管报送集市 ADS（按监管机构隔离 · 字段映射 + DQ 校验 + 报文生成）">
+          <mxGeometry x="50" y="1240" width="1700" height="280" as="geometry"/>
+          
+        </mxCell>
+        <mxCell id="83" parent="82" vertex="1" style="fontColor=#C62828;fontSize=9;align=left;verticalAlign=top;opacity=100;fillColor=#FFEBEE;rounded=1;strokeColor=#C62828;whiteSpace=wrap;html=1" value="&lt;b&gt;ads_ybt&lt;/b&gt; 一表通 YBT 2.1 10主题 90表 dm_ybt_loan_contract dm_ybt_cust_info dm_ybt_deposit dm_ybt_wealth">
+          <mxGeometry x="80" y="1280" width="310" height="170" as="geometry"/>
+          
+        </mxCell>
+        <mxCell id="84" parent="82" vertex="1" style="fontColor=#E65100;fontSize=9;align=left;verticalAlign=top;opacity=100;fillColor=#FFF3E0;rounded=1;strokeColor=#E65100;whiteSpace=wrap;html=1" value="&lt;b&gt;ads_east&lt;/b&gt; EAST 5.0 62张表转换通道 dm_east_acct dm_east_trans dm_east_loan dm_east_fx">
+          <mxGeometry x="430" y="1280" width="310" height="170" as="geometry"/>
+          
+        </mxCell>
+        <mxCell id="85" parent="82" vertex="1" style="fontColor=#00695C;fontSize=9;align=left;verticalAlign=top;opacity=100;fillColor=#E0F2F1;rounded=1;strokeColor=#00695C;whiteSpace=wrap;html=1" value="&lt;b&gt;ads_bop&lt;/b&gt; BOP 间接申报 外管局 dm_bop_jbxx_pending dm_bop_sbxx_pending dm_bop_jgb01">
+          <mxGeometry x="780" y="1280" width="310" height="170" as="geometry"/>
+          
+        </mxCell>
+        <mxCell id="86" parent="82" vertex="1" style="fontColor=#6A1B9A;fontSize=9;align=left;verticalAlign=top;opacity=100;fillColor=#F3E5F5;rounded=1;strokeColor=#6A1B9A;whiteSpace=wrap;html=1" value="&lt;b&gt;ads_aml_large&lt;/b&gt; 大额反洗钱 LVT 人民银行 dm_aml_large_txn_report dm_aml_susp_txn_case">
+          <mxGeometry x="1130" y="1280" width="310" height="170" as="geometry"/>
+          
+        </mxCell>
+        <mxCell id="87" parent="82" vertex="1" style="fontColor=#2E7D32;fontSize=9;align=left;verticalAlign=top;opacity=100;fillColor=#E8F5E9;rounded=1;strokeColor=#2E7D32;whiteSpace=wrap;html=1" value="&lt;b&gt;ads_1104&lt;/b&gt; 1104 报表 金监局 dm_1104_index dm_1104_schedule G01/G11/G4B">
+          <mxGeometry x="1480" y="1280" width="310" height="170" as="geometry"/>
+          
+        </mxCell>
+        <mxCell id="88" parent="82" edge="1" style="fontColor=#333333;fontSize=9;align=left;verticalAlign=top;opacity=100;strokeColor=none;strokeColor=#C62828;strokeWidth=2;endArrow=classic;startArrow=none;" source="69" target="83" value="YBT 字段映射">
+          
+        <mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="89" parent="82" edge="1" style="fontColor=#333333;fontSize=9;align=left;verticalAlign=top;opacity=100;strokeColor=none;strokeColor=#E65100;strokeWidth=2;endArrow=classic;startArrow=none;" source="64" target="84" value="EAST 转换">
+          
+        <mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="90" parent="82" edge="1" style="fontColor=#333333;fontSize=9;align=left;verticalAlign=top;opacity=100;strokeColor=none;strokeColor=#00695C;strokeWidth=2;endArrow=classic;startArrow=none;" source="66" target="85" value="BOP 接口映射">
+          
+        <mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="91" parent="82" edge="1" style="fontColor=#333333;fontSize=9;align=left;verticalAlign=top;opacity=100;strokeColor=none;strokeColor=#6A1B9A;strokeWidth=2;endArrow=classic;startArrow=none;" source="67" target="86" value="LVT 阈值判定">
+          
+        <mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="92" parent="82" edge="1" style="fontColor=#333333;fontSize=9;align=left;verticalAlign=top;opacity=100;strokeColor=none;strokeColor=#2E7D32;strokeWidth=2;endArrow=classic;startArrow=none;" source="64" target="87" value="1104 指标派生">
+          
+        <mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="93" parent="82" edge="1" style="fontColor=#333333;fontSize=9;align=left;verticalAlign=top;opacity=100;strokeColor=none;strokeColor=#2E7D32;strokeWidth=1;endArrow=classic;startArrow=none;dashed=1;dashPattern=4 4;" source="65" target="87"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="94" parent="1" vertex="1" style="fontColor=white;fontSize=13;align=left;verticalAlign=top;opacity=100;fillColor=#263238;rounded=1;strokeColor=#263238;fontStyle=1;swimlane=1;startSize=30;fontStyle=1;whiteSpace=wrap;html=1;" value="⑦ 数据治理与可观测性（Collibra + DQ Hub + OpenLineage + 自研记录级血缘）">
+          <mxGeometry x="50" y="1540" width="1700" height="230" as="geometry"/>
+          
+        </mxCell>
+        <mxCell id="95" parent="94" vertex="1" style="fontColor=#6A1B9A;fontSize=9;align=left;verticalAlign=top;opacity=100;fillColor=#F3E5F5;rounded=1;strokeColor=#6A1B9A;whiteSpace=wrap;html=1" value="&lt;b&gt;Collibra&lt;/b&gt; (设计态血缘) Business Term (YBT/EAST/BOP/LVT/1104) Transformation Rule (联名/SWIFT/冲正) Policy (监管制度挂载) dim_dict_reg 四向码值管理">
+          <mxGeometry x="80" y="1580" width="310" height="150" as="geometry"/>
+          
+        </mxCell>
+        <mxCell id="96" parent="94" vertex="1" style="fontColor=#2E7D32;fontSize=9;align=left;verticalAlign=top;opacity=100;fillColor=#E8F5E9;rounded=1;strokeColor=#2E7D32;whiteSpace=wrap;html=1" value="&lt;b&gt;OpenLineage&lt;/b&gt; (运行态血缘) Dataproc Spark Agent → Data Lineage API Run Event (start/complete/fail) Custom Facet (biz_event_no/rule_version) LogicalPlan 捕获拆分黑盒">
+          <mxGeometry x="430" y="1580" width="310" height="150" as="geometry"/>
+          
+        </mxCell>
+        <mxCell id="97" parent="94" vertex="1" style="fontColor=#E65100;fontSize=9;align=left;verticalAlign=top;opacity=100;fillColor=#FFF3E0;rounded=1;strokeColor=#E65100;whiteSpace=wrap;html=1" value="&lt;b&gt;DQ Hub&lt;/b&gt; (数据质量) 空/码值/唯一性 (每层) DWS 总分核对 (DWD≡DWS≡总账) 跨报送勾稽 (YBT↔EAST↔1104) 报文阻断 webhook → Pub/Sub">
+          <mxGeometry x="780" y="1580" width="310" height="150" as="geometry"/>
+          
+        </mxCell>
+        <mxCell id="98" parent="94" vertex="1" style="fontColor=#00695C;fontSize=9;align=left;verticalAlign=top;opacity=100;fillColor=#E0F2F1;rounded=1;strokeColor=#00695C;whiteSpace=wrap;html=1" value="&lt;b&gt;自研治理表&lt;/b&gt; (记录级血缘) reg_record_lineage (UETR→biz_event→ADS) reg_txn_mapping_lineage (映射追溯) DQ 勾稽工单闭环 监管问询 5 分钟追溯">
+          <mxGeometry x="1130" y="1580" width="310" height="150" as="geometry"/>
+          
+        </mxCell>
+        <mxCell id="99" parent="94" edge="1" style="fontColor=#333333;fontSize=9;align=left;verticalAlign=top;opacity=100;strokeColor=none;strokeColor=#6A1B9A;strokeWidth=2;endArrow=classic;startArrow=none;" source="95" target="96" value="Rule ↔ Run 对账">
+          
+        <mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="100" parent="94" edge="1" style="fontColor=#333333;fontSize=9;align=left;verticalAlign=top;opacity=100;strokeColor=none;strokeColor=#E65100;strokeWidth=2;endArrow=classic;startArrow=none;" source="96" target="97" value="Run FAIL → DQ 工单">
+          
+        <mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="101" parent="94" edge="1" style="fontColor=#333333;fontSize=9;align=left;verticalAlign=top;opacity=100;strokeColor=none;strokeColor=#2E7D32;strokeWidth=2;endArrow=classic;startArrow=none;" source="97" target="98" value="DQ 样本 → 记录追溯">
+          
+        <mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="102" parent="94" edge="1" style="fontColor=#333333;fontSize=9;align=left;verticalAlign=top;opacity=100;strokeColor=none;strokeColor=#1565C0;strokeWidth=2;endArrow=classic;startArrow=none;dashed=1;dashPattern=4 4;" source="98" target="95" value="记录 → Rule 反向追溯">
+          
+        <mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="103" parent="1" vertex="1" style="fontColor=white;fontSize=13;align=left;verticalAlign=top;opacity=100;fillColor=#00695C;rounded=1;strokeColor=#00695C;fontStyle=1;swimlane=1;startSize=30;fontStyle=1;whiteSpace=wrap;html=1;" value="⑧ 可信区 + 报文生成 + 报送出口（GCP 安全底座）">
+          <mxGeometry x="50" y="1790" width="1700" height="210" as="geometry"/>
+          
+        </mxCell>
+        <mxCell id="104" parent="103" vertex="1" style="fontColor=#00695C;fontSize=9;align=left;verticalAlign=top;opacity=100;fillColor=#E0F2F1;rounded=1;strokeColor=#00695C;whiteSpace=wrap;html=1" value="&lt;b&gt;Trusted Zone&lt;/b&gt; (GCS Bucket Lock) 可信区隔离 Retention Policy Object Hold 防篡改 VPC SC + KMS 加密">
+          <mxGeometry x="80" y="1830" width="310" height="120" as="geometry"/>
+          
+        </mxCell>
+        <mxCell id="105" parent="103" vertex="1" style="fontColor=#00695C;fontSize=9;align=left;verticalAlign=top;opacity=100;fillColor=#E0F2F1;rounded=1;strokeColor=#00695C;whiteSpace=wrap;html=1" value="&lt;b&gt;Cloud Run / GKE&lt;/b&gt; (报文生成) YBT 90 表 CSV/XML BOP ASCII EAST 5.0 定长 LVT 人行格式 1104 Excel/DBF">
+          <mxGeometry x="430" y="1830" width="310" height="120" as="geometry"/>
+          
+        </mxCell>
+        <mxCell id="106" parent="103" vertex="1" style="fontColor=#00695C;fontSize=9;align=left;verticalAlign=top;opacity=100;fillColor=#E0F2F1;rounded=1;strokeColor=#00695C;whiteSpace=wrap;html=1" value="&lt;b&gt;Apigee + Cloud VPN&lt;/b&gt; (前置机对接) 外管局 数字外管 金监局 一表通平台 人民银行 反洗钱监测中心 mTLS + 报文签名 + 重试">
+          <mxGeometry x="780" y="1830" width="310" height="120" as="geometry"/>
+          
+        </mxCell>
+        <mxCell id="107" parent="103" vertex="1" style="fontColor=#00695C;fontSize=9;align=left;verticalAlign=top;opacity=100;fillColor=#E0F2F1;rounded=1;strokeColor=#00695C;whiteSpace=wrap;html=1" value="&lt;b&gt;Composer&lt;/b&gt; (Airflow 调度) DAG_ybt_daily DAG_bop_daily DAG_aml_large DAG_east_daily DAG_1104_monthly">
+          <mxGeometry x="1130" y="1830" width="310" height="120" as="geometry"/>
+          
+        </mxCell>
+        <mxCell id="108" parent="103" edge="1" style="fontColor=#333333;fontSize=9;align=left;verticalAlign=top;opacity=100;strokeColor=none;strokeColor=#00695C;strokeWidth=1;endArrow=classic;startArrow=none;dashed=1;dashPattern=4 4;" source="83" target="104"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="109" parent="103" edge="1" style="fontColor=#333333;fontSize=9;align=left;verticalAlign=top;opacity=100;strokeColor=none;strokeColor=#00695C;strokeWidth=1;endArrow=classic;startArrow=none;dashed=1;dashPattern=4 4;" source="84" target="104"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="110" parent="103" edge="1" style="fontColor=#333333;fontSize=9;align=left;verticalAlign=top;opacity=100;strokeColor=none;strokeColor=#00695C;strokeWidth=1;endArrow=classic;startArrow=none;dashed=1;dashPattern=4 4;" source="85" target="104"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="111" parent="103" edge="1" style="fontColor=#333333;fontSize=9;align=left;verticalAlign=top;opacity=100;strokeColor=none;strokeColor=#00695C;strokeWidth=1;endArrow=classic;startArrow=none;dashed=1;dashPattern=4 4;" source="86" target="104"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="112" parent="103" edge="1" style="fontColor=#333333;fontSize=9;align=left;verticalAlign=top;opacity=100;strokeColor=none;strokeColor=#00695C;strokeWidth=1;endArrow=classic;startArrow=none;dashed=1;dashPattern=4 4;" source="87" target="104"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="113" parent="103" edge="1" style="fontColor=#333333;fontSize=9;align=left;verticalAlign=top;opacity=100;strokeColor=none;strokeColor=#00695C;strokeWidth=2;endArrow=classic;startArrow=none;" source="104" target="105" value="报文生成">
+          
+        <mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="114" parent="103" edge="1" style="fontColor=#333333;fontSize=9;align=left;verticalAlign=top;opacity=100;strokeColor=none;strokeColor=#00695C;strokeWidth=2;endArrow=classic;startArrow=none;" source="105" target="106" value="前置机报送">
+          
+        <mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="115" parent="103" edge="1" style="fontColor=#333333;fontSize=9;align=left;verticalAlign=top;opacity=100;strokeColor=none;strokeColor=#C62828;strokeWidth=2;endArrow=classic;startArrow=none;dashed=1;dashPattern=4 4;" source="97" target="105" value="DQ 阻断">
+          
+        <mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="116" parent="103" edge="1" style="fontColor=#333333;fontSize=9;align=left;verticalAlign=top;opacity=100;strokeColor=none;strokeColor=#616161;strokeWidth=1;endArrow=classic;startArrow=none;dashed=1;dashPattern=4 4;" source="107" target="104"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="117" parent="103" edge="1" style="fontColor=#333333;fontSize=9;align=left;verticalAlign=top;opacity=100;strokeColor=none;strokeColor=#616161;strokeWidth=1;endArrow=classic;startArrow=none;dashed=1;dashPattern=4 4;" source="107" target="105"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="118" parent="103" edge="1" style="fontColor=#333333;fontSize=9;align=left;verticalAlign=top;opacity=100;strokeColor=none;strokeColor=#616161;strokeWidth=1;endArrow=classic;startArrow=none;dashed=1;dashPattern=4 4;" source="107" target="106"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="119" parent="1" vertex="1" style="fontColor=white;fontSize=13;align=left;verticalAlign=top;opacity=100;fillColor=#F9A825;rounded=1;strokeColor=#F9A825;fontStyle=1;swimlane=1;startSize=30;fontStyle=1;whiteSpace=wrap;html=1;" value="⑨ 交易类型映射规则管理（Collibra → BQ 规则维表 → Spark UDF → 记录追溯）">
+          <mxGeometry x="50" y="2010" width="1700" height="200" as="geometry"/>
+          
+        </mxCell>
+        <mxCell id="120" parent="119" vertex="1" style="fontColor=#6A1B9A;fontSize=9;align=left;verticalAlign=top;opacity=100;fillColor=#F5F5F5;rounded=1;strokeColor=#6A1B9A;fontStyle=1;whiteSpace=wrap;html=1" value="&lt;b&gt;Collibra Business Term + Rule&lt;/b&gt; 合规岗维护 映射语义定义 版本化管理 effective date">
+          <mxGeometry x="80" y="2050" width="310" height="120" as="geometry"/>
+          
+        </mxCell>
+        <mxCell id="121" parent="119" vertex="1" style="fontColor=#1565C0;fontSize=9;align=left;verticalAlign=top;opacity=100;fillColor=#F5F5F5;rounded=1;strokeColor=#1565C0;fontStyle=1;whiteSpace=wrap;html=1" value="&lt;b&gt;BQ reg_txn_mapping 规则维表&lt;/b&gt; 渠道+原交易类型 +字段条件组合 →各监管目标码 可被 JOIN / 广播">
+          <mxGeometry x="430" y="2050" width="310" height="120" as="geometry"/>
+          
+        </mxCell>
+        <mxCell id="122" parent="119" vertex="1" style="fontColor=#2E7D32;fontSize=9;align=left;verticalAlign=top;opacity=100;fillColor=#F5F5F5;rounded=1;strokeColor=#2E7D32;fontStyle=1;whiteSpace=wrap;html=1" value="&lt;b&gt;Spark UDF / Dataform Macro&lt;/b&gt; 读规则维表 执行映射 输出 reg_codes_json 留 mapping_id">
+          <mxGeometry x="780" y="2050" width="310" height="120" as="geometry"/>
+          
+        </mxCell>
+        <mxCell id="123" parent="119" vertex="1" style="fontColor=#00695C;fontSize=9;align=left;verticalAlign=top;opacity=100;fillColor=#F5F5F5;rounded=1;strokeColor=#00695C;fontStyle=1;whiteSpace=wrap;html=1" value="&lt;b&gt;reg_txn_mapping _lineage 表&lt;/b&gt; 记录级映射追溯 condition_snapshot mapping_id + rule_version 迎检闭环">
+          <mxGeometry x="1130" y="2050" width="310" height="120" as="geometry"/>
+          
+        </mxCell>
+        <mxCell id="124" parent="119" edge="1" style="fontColor=#333333;fontSize=9;align=left;verticalAlign=top;opacity=100;strokeColor=none;strokeColor=#6A1B9A;strokeWidth=2;endArrow=classic;startArrow=none;" source="120" target="121" value="同步">
+          
+        <mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="125" parent="119" edge="1" style="fontColor=#333333;fontSize=9;align=left;verticalAlign=top;opacity=100;strokeColor=none;strokeColor=#1565C0;strokeWidth=2;endArrow=classic;startArrow=none;" source="121" target="122" value="消费">
+          
+        <mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="126" parent="119" edge="1" style="fontColor=#333333;fontSize=9;align=left;verticalAlign=top;opacity=100;strokeColor=none;strokeColor=#2E7D32;strokeWidth=2;endArrow=classic;startArrow=none;" source="122" target="123" value="写入">
+          
+        <mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="127" parent="119" edge="1" style="fontColor=#333333;fontSize=9;align=left;verticalAlign=top;opacity=100;strokeColor=none;strokeColor=#00695C;strokeWidth=2;endArrow=classic;startArrow=none;dashed=1;dashPattern=4 4;" source="123" target="120" value="迎检追溯">
+          
+        <mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="128" parent="119" edge="1" style="fontColor=#333333;fontSize=9;align=left;verticalAlign=top;opacity=100;strokeColor=none;strokeColor=#F9A825;strokeWidth=2;endArrow=classic;startArrow=none;dashed=1;dashPattern=4 4;" source="41" target="122" value="规则执行">
+          
+        <mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="129" parent="1" vertex="1" style="fontColor=#263238;fontSize=13;align=left;verticalAlign=top;opacity=100;strokeColor=none;fontStyle=1;whiteSpace=wrap;html=1" value="&lt;b&gt;图例 / Legend&lt;/b&gt;">
+          <mxGeometry x="50" y="2230" width="200" height="25" as="geometry"/>
+          
+        </mxCell>
+        <mxCell id="130" parent="1" edge="1" style="strokeColor=#1565C0;strokeWidth=2;" source="1" target="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="131" parent="1" vertex="1" style="fontColor=#1565C0;fontSize=10;align=left;verticalAlign=top;opacity=100;strokeColor=none;whiteSpace=wrap;html=1" value="&lt;font color='#1565C0'&gt;━━━&lt;/font&gt;">
+          <mxGeometry x="80" y="2260" width="60" height="20" as="geometry"/>
+          
+        </mxCell>
+        <mxCell id="132" parent="1" vertex="1" style="fontColor=#1565C0;fontSize=9;align=left;verticalAlign=top;opacity=100;strokeColor=none;whiteSpace=wrap;html=1" value="数据流向">
+          <mxGeometry x="150" y="2260" width="220" height="20" as="geometry"/>
+          
+        </mxCell>
+        <mxCell id="133" parent="1" edge="1" style="strokeColor=#616161;strokeWidth=2;dashed=1;dashPattern=4 4;" source="1" target="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="134" parent="1" vertex="1" style="fontColor=#616161;fontSize=10;align=left;verticalAlign=top;opacity=100;strokeColor=none;whiteSpace=wrap;html=1" value="&lt;font color='#616161'&gt;┄┄┄&lt;/font&gt;">
+          <mxGeometry x="380" y="2260" width="60" height="20" as="geometry"/>
+          
+        </mxCell>
+        <mxCell id="135" parent="1" vertex="1" style="fontColor=#616161;fontSize=9;align=left;verticalAlign=top;opacity=100;strokeColor=none;whiteSpace=wrap;html=1" value="血缘/控制流">
+          <mxGeometry x="450" y="2260" width="220" height="20" as="geometry"/>
+          
+        </mxCell>
+        <mxCell id="136" parent="1" edge="1" style="strokeColor=#C62828;strokeWidth=2;dashed=1;dashPattern=4 4;" source="1" target="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="137" parent="1" vertex="1" style="fontColor=#C62828;fontSize=10;align=left;verticalAlign=top;opacity=100;strokeColor=none;whiteSpace=wrap;html=1" value="&lt;font color='#C62828'&gt;- - -&lt;/font&gt;">
+          <mxGeometry x="680" y="2260" width="60" height="20" as="geometry"/>
+          
+        </mxCell>
+        <mxCell id="138" parent="1" vertex="1" style="fontColor=#C62828;fontSize=9;align=left;verticalAlign=top;opacity=100;strokeColor=none;whiteSpace=wrap;html=1" value="DQ 阻断/告警">
+          <mxGeometry x="750" y="2260" width="220" height="20" as="geometry"/>
+          
+        </mxCell>
+        <mxCell id="139" parent="1" edge="1" style="strokeColor=#2E7D32;strokeWidth=2;" source="1" target="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="140" parent="1" vertex="1" style="fontColor=#2E7D32;fontSize=10;align=left;verticalAlign=top;opacity=100;strokeColor=none;whiteSpace=wrap;html=1" value="&lt;font color='#2E7D32'&gt;Dataproc&lt;/font&gt;">
+          <mxGeometry x="980" y="2260" width="60" height="20" as="geometry"/>
+          
+        </mxCell>
+        <mxCell id="141" parent="1" vertex="1" style="fontColor=#2E7D32;fontSize=9;align=left;verticalAlign=top;opacity=100;strokeColor=none;whiteSpace=wrap;html=1" value="DWD 复杂归并 + OL Spark Agent">
+          <mxGeometry x="1050" y="2260" width="220" height="20" as="geometry"/>
+          
+        </mxCell>
+        <mxCell id="142" parent="1" edge="1" style="strokeColor=#E65100;strokeWidth=2;" source="1" target="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="143" parent="1" vertex="1" style="fontColor=#E65100;fontSize=10;align=left;verticalAlign=top;opacity=100;strokeColor=none;whiteSpace=wrap;html=1" value="&lt;font color='#E65100'&gt;Dataform&lt;/font&gt;">
+          <mxGeometry x="1280" y="2260" width="60" height="20" as="geometry"/>
+          
+        </mxCell>
+        <mxCell id="144" parent="1" vertex="1" style="fontColor=#E65100;fontSize=9;align=left;verticalAlign=top;opacity=100;strokeColor=none;whiteSpace=wrap;html=1" value="DWS/ADS SQL 建模 + Assertion">
+          <mxGeometry x="1350" y="2260" width="220" height="20" as="geometry"/>
+          
+        </mxCell>
+        <mxCell id="145" parent="1" edge="1" style="strokeColor=#616161;strokeWidth=2;" source="1" target="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="146" parent="1" vertex="1" style="fontColor=#616161;fontSize=10;align=left;verticalAlign=top;opacity=100;strokeColor=none;whiteSpace=wrap;html=1" value="&lt;font color='#616161'&gt;Composer&lt;/font&gt;">
+          <mxGeometry x="1580" y="2260" width="60" height="20" as="geometry"/>
+          
+        </mxCell>
+        <mxCell id="147" parent="1" vertex="1" style="fontColor=#616161;fontSize=9;align=left;verticalAlign=top;opacity=100;strokeColor=none;whiteSpace=wrap;html=1" value="五报送 DAG 调度编排">
+          <mxGeometry x="1650" y="2260" width="220" height="20" as="geometry"/>
+          
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
