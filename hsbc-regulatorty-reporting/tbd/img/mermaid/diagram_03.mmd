@@ -1,0 +1,58 @@
+graph TB
+    subgraph L5["<b>Layer 5: End-to-End Audit & Lineage</b> — OpenLineage + Immutable Logs (7-20 years retention)"]
+        AUDIT["Audit Log Repository<br/>Immutable Storage<br/>One-Click Traceability"]
+    end
+
+    subgraph L4["<b>Layer 4: Unified Encrypted Transfer</b> — TLS 1.3 + AES-256 + Dedicated VPN"]
+        TX["Encrypted Transfer Channel<br/>Aggregated Metrics/Ciphertext Only"]
+    end
+
+    subgraph L3["<b>Layer 3: Local Rule Adaptation (Lightweight)</b>"]
+        direction LR
+        R_CN["CN Rule Adapt"]
+        R_HK["HK Format Conv"]
+        R_TW["TW Cross-Strait"]
+        R_JP["JP Derivatives"]
+        R_KR["KR Chaebol"]
+        R_SG["SG MAS600"]
+        R_MY["MY Islamic"]
+    end
+
+    subgraph L2["<b>Layer 2: Regional Data Processing Hub</b> (HK+SG Active-Active GCP)"]
+        direction LR
+        HUB_HK["<b>🇭🇰 HK Hub</b><br/>Unified Data Cleaning/Std<br/>Field Mapping/Quality Check<br/>ODS/Data Lake"]
+        HUB_SG["<b>🇸🇬 SG Hub</b><br/>Unified Data Cleaning/Std<br/>Field Mapping/Quality Check<br/>ODS/Data Lake"]
+    end
+
+    subgraph L1["<b>Layer 1: Multi-Source Unified Data Collection</b> — CDC Real-time Capture + Batch Import"]
+        direction LR
+        subgraph L1A["<b>Strong Localization (9 Markets)</b><br/>Independent Local Full Stack"]
+            N_CN["🇨🇳 CN<br/>TDE+Local Compute+MPC"]
+            N_TW["🇹🇼 TW<br/>TDE+Local Compute+MPC"]
+            N_KR["🇰🇷 KR<br/>TDE+Local Compute+MPC"]
+            N_OTH["🇳🇿🇮🇩🇻🇳🇮🇳🇲🇾"]
+        end
+        subgraph L1B["<b>Local Replica (4 Markets)</b><br/>Full Image + Hub Full Copy"]
+            N_JP["🇯🇵 JP"]
+            N_AU["🇦🇺 AU"]
+            N_TH["🇹🇭 TH"]
+            N_PH["🇵🇭 PH"]
+        end
+        subgraph L1C["<b>Free Flow (2 Markets)</b><br/>Direct Hub Aggregation"]
+            N_HK["🇭🇰 HK"]
+            N_SG["🇸🇬 SG"]
+        end
+    end
+
+    L1A & L1B & L1C -->|Encrypted TLS 1.3| HUB_HK
+    L1A & L1B & L1C -->|Encrypted TLS 1.3| HUB_SG
+    HUB_HK & HUB_SG --> L3
+    L3 --> TX
+    TX -->|Regulatory Reports| AUDIT
+    HUB_HK <-->|Active-Active Sync| HUB_SG
+
+    style L5 fill:#E8F5E9,stroke:#00A86B
+    style L4 fill:#FFF3E0,stroke:#FF8C00
+    style L3 fill:#E3F2FD,stroke:#2E5090
+    style L2 fill:#FFE0E0,stroke:#DB0011
+    style L1 fill:#F5F5F5,stroke:#666

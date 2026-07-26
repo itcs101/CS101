@@ -1,0 +1,43 @@
+graph TB
+    subgraph L1["<b>Layer 1: Format-Preserving Tokenization (FPT)</b><br/>Applies to: Regulatory report customer ID substitution — NIST SP 800-38G FF1"]
+        direction LR
+        FPT_IN["Original: CN-110108-19900101-123X"]
+        FPT_ENGINE["<b>FPT Engine</b><br/>FF1 Algorithm + Deterministic/Random Mode"]
+        FPT_VAULT["<b>Token Vault</b><br/>Independent Secure Storage<br/>HSM Protection"]
+        FPT_OUT["Token: CN-582913-84072601-456Y<br/>Preserves Format/Checksum Valid/Irreversible"]
+        FPT_IN --> FPT_ENGINE --> FPT_OUT
+        FPT_ENGINE <--> FPT_VAULT
+    end
+
+    subgraph L2["<b>Layer 2: Deterministic Tokenization</b><br/>Applies to: Cross-system/cross-report customer linking (Intra-market)"]
+        direction LR
+        DET_IN["Same Original Data"]
+        DET_HASH["HMAC-SHA256<br/>KDF Derived Key"]
+        DET_OUT["Same Token<br/>Deterministic Mapping"]
+        DET_KMS["Local Independent KMS<br/>Keys Never Cross Border"]
+        DET_IN --> DET_HASH --> DET_OUT
+        DET_HASH --> DET_KMS
+    end
+
+    subgraph L3["<b>Layer 3: Aggregated Tokenization</b><br/>Applies to: Strong localization markets cross-border aggregated transfer — k-anonymity (k>=5) + differential privacy (ε=1.0~2.0)"]
+        direction LR
+        AGG_IN["Customer A/B/C → Respective Internal Tokens"]
+        AGG_GROUP["Aggregated Group ID<br/>Agg_Token_Group<br/>Individuals Indistinguishable"]
+        AGG_OUT["Group Metrics Export:<br/>\"Group Total Deposits $1.2M\""]
+        AGG_IN --> AGG_GROUP --> AGG_OUT
+    end
+
+    subgraph L4["<b>Layer 4: Zero-Knowledge Proof (ZKP) Tokenization</b><br/>Applies to: Regulatory audit tracing — Prove tokenization correctness without tampering"]
+        direction LR
+        ZKP_IN["① Orig Data→Token<br/>② Sync Generate ZKP"]
+        ZKP_VERIFY["③ Token+ZKP Transfer"]
+        ZKP_OUT["④ Regulator Verify ZKP:<br/>Logic Correct/Untampered<br/>Cannot Reverse to Orig"]
+        ZKP_IN --> ZKP_VERIFY --> ZKP_OUT
+    end
+
+    L1 --> L2 --> L3 --> L4
+
+    style L1 fill:#E3F2FD,stroke:#2E5090
+    style L2 fill:#E8F5E9,stroke:#00A86B
+    style L3 fill:#FFF3E0,stroke:#FF8C00
+    style L4 fill:#FFE0E0,stroke:#DB0011

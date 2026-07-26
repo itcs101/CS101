@@ -1,0 +1,58 @@
+graph TB
+    subgraph L5["<b>Layer 5: 全链路溯源审计层</b> — OpenLineage + 不可篡改日志 (留存7-20年)"]
+        AUDIT["审计日志仓库<br/>不可篡改存储<br/>一键溯源证明"]
+    end
+
+    subgraph L4["<b>Layer 4: 统一加密传输层</b> — TLS 1.3 + AES-256 + 专线VPN"]
+        TX["加密传输通道<br/>仅汇总指标/密文指纹"]
+    end
+
+    subgraph L3["<b>Layer 3: 属地级规则适配层 (轻量化)</b>"]
+        direction LR
+        R_CN["中 规则适配"]
+        R_HK["港 格式转换"]
+        R_TW["台 两岸专项"]
+        R_JP["日 衍生品专项"]
+        R_KR["韩 财阀专项"]
+        R_SG["新 MAS600"]
+        R_MY["马 伊斯兰专项"]
+    end
+
+    subgraph L2["<b>Layer 2: 区域级统一数据处理中枢层</b> (香港+新加坡 双活GCP)"]
+        direction LR
+        HUB_HK["<b>🇭🇰 香港中枢</b><br/>统一数据清洗/标准化<br/>字段映射/质量校验<br/>ODS/数据湖"]
+        HUB_SG["<b>🇸🇬 新加坡中枢</b><br/>统一数据清洗/标准化<br/>字段映射/质量校验<br/>ODS/数据湖"]
+    end
+
+    subgraph L1["<b>Layer 1: 多源统一数据采集层</b> — CDC实时捕获 + 批量导入"]
+        direction LR
+        subgraph L1A["<b>强本地化市场 (9个)</b><br/>独立部署本地全栈"]
+            N_CN["🇨🇳 中<br/>TDE+本地计算+MPC"]
+            N_TW["🇹🇼 台<br/>TDE+本地计算+MPC"]
+            N_KR["🇰🇷 韩<br/>TDE+本地计算+MPC"]
+            N_OTH["🇳🇿🇮🇩🇻🇳🇮🇳🇲🇾"]
+        end
+        subgraph L1B["<b>本地副本 (4个)</b><br/>完整镜像 + 中枢全量"]
+            N_JP["🇯🇵 日"]
+            N_AU["🇦🇺 澳"]
+            N_TH["🇹🇭 泰"]
+            N_PH["🇵🇭 菲"]
+        end
+        subgraph L1C["<b>自由流转 (2个)</b><br/>直接归集中枢"]
+            N_HK["🇭🇰 港"]
+            N_SG["🇸🇬 新"]
+        end
+    end
+
+    L1A & L1B & L1C -->|加密管道 TLS 1.3| HUB_HK
+    L1A & L1B & L1C -->|加密管道 TLS 1.3| HUB_SG
+    HUB_HK & HUB_SG --> L3
+    L3 --> TX
+    TX -->|监管报送报文| AUDIT
+    HUB_HK <-->|双活同步| HUB_SG
+
+    style L5 fill:#E8F5E9,stroke:#00A86B
+    style L4 fill:#FFF3E0,stroke:#FF8C00
+    style L3 fill:#E3F2FD,stroke:#2E5090
+    style L2 fill:#FFE0E0,stroke:#DB0011
+    style L1 fill:#F5F5F5,stroke:#666

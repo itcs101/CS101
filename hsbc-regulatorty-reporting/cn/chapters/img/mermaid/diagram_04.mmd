@@ -1,0 +1,36 @@
+sequenceDiagram
+    participant A as 属地A (如香港)
+    participant B as 属地B (如新加坡)
+    participant C as 属地C (如中国大陆)
+    participant HUB as 区域中枢 (港/新)
+
+    Note over A,C: "Phase 1: Local Execution"
+
+    A->>A: ①加载本地全量交易明细
+    A->>A: ②本地规则引擎执行AML筛查<br/>(大额/分拆/跨境/涉敏/快进快出)
+    A->>A: ③本地计算: 可疑交易数/风险客户总数<br/>风险等级分布/跨境可疑总额
+    A->>A: ④MPC节点生成加密客户指纹(秘密分片)
+
+    B->>B: ①加载本地全量交易明细
+    B->>B: ②本地规则引擎执行AML筛查
+    B->>B: ③本地计算各项AML指标
+    B->>B: ④MPC节点生成加密客户指纹(秘密分片)
+
+    C->>C: ①加载本地全量交易明细
+    C->>C: ②本地规则引擎执行AML筛查
+    C->>C: ③本地计算各项AML指标
+    C->>C: ④MPC节点生成加密客户指纹(秘密分片)
+
+    Note over A,HUB: "Phase 2: Encrypted Cross-Border Transfer"
+
+    A->>HUB: AES-256加密汇总指标 + MPC加密分片
+    B->>HUB: AES-256加密汇总指标 + MPC加密分片
+    C->>HUB: AES-256加密汇总指标 + MPC加密分片
+
+    Note over HUB: "Phase 3: Regional Aggregation"
+
+    HUB->>HUB: ⑤MPC密文比对各属地指纹
+    HUB->>HUB: ⑥仅返回: 跨市场关联风险计数<br/>(不返回任何客户明细)
+    HUB->>HUB: ⑦聚合全区域AML风险汇总报表
+
+    Note over A,HUB: "No raw PII ever leaves jurisdiction"

@@ -1,0 +1,27 @@
+flowchart LR
+    subgraph LOCAL["<b>属地本地节点</b>"]
+        direction TB
+        S1["① 本地数据源加载<br/>核心银行/信贷/交易/AML"]
+        S2["② 本地计算全部<br/>报表行项/指标/校验逻辑"]
+        S3["<b>两套输出</b>"]
+        S3A["明细报文 → 直报属地监管"]
+        S3B["汇总指标 → AES-256加密出境"]
+        S1 --> S2 --> S3
+        S3 --> S3A
+        S3 --> S3B
+    end
+
+    subgraph HUB["<b>区域中枢 (港/新)</b>"]
+        direction TB
+        H1["③ 各属地汇总指标<br/>FHE二次聚合"]
+        H2["④ 集团合并审慎报表"]
+        H3["→ 集团总部<br/>→ 境外监管<br/>→ 管理层看板"]
+        H1 --> H2 --> H3
+    end
+
+    S3B -->|加密汇总指标| H1
+
+    style LOCAL fill:#FFF3E0,stroke:#FF8C00
+    style HUB fill:#FFE0E0,stroke:#DB0011
+    style S3A fill:#E8F5E9,stroke:#00A86B
+    style S3B fill:#E3F2FD,stroke:#2E5090

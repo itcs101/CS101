@@ -1,0 +1,36 @@
+sequenceDiagram
+    participant A as Market A (e.g., HK)
+    participant B as Market B (e.g., SG)
+    participant C as Market C (e.g., CN)
+    participant HUB as Regional Hub (HK/SG)
+
+    Note over A,C: "Phase 1: Local Execution"
+
+    A->>A: ① Load local full transaction details
+    A->>A: ② Local rules engine executes AML screening<br/>(Large/Split/Cross-Border/Sensitive/Rapid In-Out)
+    A->>A: ③ Local compute: Suspicious Tx Count/Risk Cust Count<br/>Risk Tier Dist/Cross-Border Suspicious Amt
+    A->>A: ④ MPC node generates encrypted cust fingerprints (Secret Sharing)
+
+    B->>B: ① Load local full transaction details
+    B->>B: ② Local rules engine executes AML screening
+    B->>B: ③ Local compute AML metrics
+    B->>B: ④ MPC node generates encrypted cust fingerprints (Secret Sharing)
+
+    C->>C: ① Load local full transaction details
+    C->>C: ② Local rules engine executes AML screening
+    C->>C: ③ Local compute AML metrics
+    C->>C: ④ MPC node generates encrypted cust fingerprints (Secret Sharing)
+
+    Note over A,HUB: "Phase 2: Encrypted Cross-Border Transfer"
+
+    A->>HUB: AES-256 Encrypted Metrics + MPC Encrypted Shares
+    B->>HUB: AES-256 Encrypted Metrics + MPC Encrypted Shares
+    C->>HUB: AES-256 Encrypted Metrics + MPC Encrypted Shares
+
+    Note over HUB: "Phase 3: Regional Aggregation"
+
+    HUB->>HUB: ⑤ MPC ciphertext matching across market fingerprints
+    HUB->>HUB: ⑥ Return ONLY: Cross-market linked risk count<br/>(NO customer details returned)
+    HUB->>HUB: ⑦ Aggregate region-wide AML risk summary report
+
+    Note over A,HUB: "No raw PII ever leaves jurisdiction"

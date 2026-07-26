@@ -1,0 +1,27 @@
+flowchart LR
+    subgraph LOCAL["<b>Local Market Node</b>"]
+        direction TB
+        S1["① Local Data Source Load<br/>Core Banking/Credit/Tx/AML"]
+        S2["② Local Compute All<br/>Report Line Items/Metrics/Validation"]
+        S3["<b>Dual Output</b>"]
+        S3A["Granular Report → Direct to Local Regulator"]
+        S3B["Aggregated Metrics → AES-256 Encrypted Export"]
+        S1 --> S2 --> S3
+        S3 --> S3A
+        S3 --> S3B
+    end
+
+    subgraph HUB["<b>Regional Hub (HK/SG)</b>"]
+        direction TB
+        H1["③ Aggregate Metrics from Markets<br/>FHE Secondary Aggregation"]
+        H2["④ Group Consolidated Prudential Report"]
+        H3["→ Group HQ<br/>→ Offshore Regulators<br/>→ Management Dashboard"]
+        H1 --> H2 --> H3
+    end
+
+    S3B -->|Encrypted Aggregated Metrics| H1
+
+    style LOCAL fill:#FFF3E0,stroke:#FF8C00
+    style HUB fill:#FFE0E0,stroke:#DB0011
+    style S3A fill:#E8F5E9,stroke:#00A86B
+    style S3B fill:#E3F2FD,stroke:#2E5090

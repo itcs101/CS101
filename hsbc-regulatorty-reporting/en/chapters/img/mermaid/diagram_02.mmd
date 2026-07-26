@@ -1,0 +1,39 @@
+graph LR
+    subgraph CUST["Customer Segmentation (Four Core Tiers)"]
+        direction TB
+        C1["<b>UHNW / Family Offices</b><br/>Triple I Exclusive Platform<br/>Compliance Complexity: ★★★★"]
+        C2["<b>HNW / Affluent Individuals</b><br/>Premier / Premier Elite / Jade<br/>Compliance Complexity: ★★★"]
+        C3["<b>Leading Corporates / FIs</b><br/>Asia's #1 Transaction Bank<br/>Compliance Complexity: ★★★★★"]
+        C4["<b>Innovative / Mid-Market Enterprises</b><br/>High Growth Potential<br/>Compliance Complexity: ★★"]
+    end
+
+    subgraph PROD["Four Core Product Portfolios"]
+        direction TB
+        P1["<b>Wealth Management</b><br/>Multi-Currency Savings/Credit/Invest/Insure<br/>Global Premier Services"]
+        P2["<b>Cross-Border Trade & FX</b><br/>Trade Finance/Cash Management/FX Hedging<br/>Intra-Region Express Transfers"]
+        P3["<b>Capital Markets & Securities</b><br/>Debt/Equity Financing/Multi-Ccy Treasury<br/>Securities Custody"]
+        P4["<b>Islamic Finance (Specialized)</b><br/>Murabaha/Sukuk/Takaful<br/>Malaysia + Middle East"]
+    end
+
+    subgraph COVER["Key Market Coverage"]
+        direction TB
+        M1["HK, SG, CN, TW, AU"]
+        M2["All Markets"]
+        M3["HK, SG, JP, AU, IN"]
+        M4["Malaysia, Middle East Linked"]
+    end
+
+    C1 --> P1
+    C2 --> P1
+    C3 --> P2
+    C3 --> P3
+    C4 --> P2
+    P1 --> M1
+    P2 --> M2
+    P3 --> M3
+    P4 --> M4
+
+    style CUST fill:#f5f5f5,stroke:#DB0011
+    style PROD fill:#f5f5f5,stroke:#DB0011
+    style COVER fill:#f5f5f5,stroke:#DB0011
+    style C3 fill:#FFD700,stroke:#333

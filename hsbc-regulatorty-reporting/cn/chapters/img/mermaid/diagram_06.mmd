@@ -1,0 +1,43 @@
+graph TB
+    subgraph L1["<b>Layer 1: 格式保持令牌化 (FPT)</b><br/>NIST SP 800-38G FF1算法 — 监管报表客户标识字段替代"]
+        direction LR
+        FPT_IN["原始: CN-110108-19900101-123X"]
+        FPT_ENGINE["<b>FPT引擎</b><br/>FF1算法 + 确定性/随机模式"]
+        FPT_VAULT["<b>Token Vault</b><br/>独立安全存储<br/>HSM保护"]
+        FPT_OUT["令牌: CN-582913-84072601-456Y<br/>保持格式/校验位有效/无法还原"]
+        FPT_IN --> FPT_ENGINE --> FPT_OUT
+        FPT_ENGINE <--> FPT_VAULT
+    end
+
+    subgraph L2["<b>Layer 2: 确定性令牌化</b><br/>跨系统/跨报表客户一致性关联 (各属地内部)"]
+        direction LR
+        DET_IN["同一原始数据"]
+        DET_HASH["HMAC-SHA256<br/>KDF派生密钥"]
+        DET_OUT["同一令牌<br/>确定性映射"]
+        DET_KMS["属地独立KMS<br/>密钥不跨境同步"]
+        DET_IN --> DET_HASH --> DET_OUT
+        DET_HASH --> DET_KMS
+    end
+
+    subgraph L3["<b>Layer 3: 聚合令牌化</b><br/>强本地化市场跨境汇总 — k-匿名化(k>=5) + 差分隐私(ε=1.0~2.0)"]
+        direction LR
+        AGG_IN["客户A/B/C → 各自内部Token"]
+        AGG_GROUP["聚合组标识<br/>Agg_Token_Group<br/>个体不可区分"]
+        AGG_OUT["组级指标出境:<br/>\"该组存款合计$1.2M\""]
+        AGG_IN --> AGG_GROUP --> AGG_OUT
+    end
+
+    subgraph L4["<b>Layer 4: 零知识证明令牌化 (ZKP)</b><br/>监管审计溯源 — 证明令牌化过程正确且无篡改"]
+        direction LR
+        ZKP_IN["①原始数据→Token<br/>②同步生成ZKP证明"]
+        ZKP_VERIFY["③ Token+ZKP 传输"]
+        ZKP_OUT["④监管验证ZKP:<br/>逻辑正确/未篡改<br/>无法反向推导原始"]
+        ZKP_IN --> ZKP_VERIFY --> ZKP_OUT
+    end
+
+    L1 --> L2 --> L3 --> L4
+
+    style L1 fill:#E3F2FD,stroke:#2E5090
+    style L2 fill:#E8F5E9,stroke:#00A86B
+    style L3 fill:#FFF3E0,stroke:#FF8C00
+    style L4 fill:#FFE0E0,stroke:#DB0011

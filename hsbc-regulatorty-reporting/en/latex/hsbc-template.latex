@@ -1,0 +1,422 @@
+%=============================================================================
+%  HSBC Asia-Pacific Regulatory Reporting — LaTeX Template
+%  HSBC Brand Style: Red #DB0011, Dark Gray #333333, Clean Professional Layout
+%  Designed for: pandoc + xelatex → PDF (full CJK support)
+%=============================================================================
+
+\documentclass[
+  a4paper,
+  11pt,
+  DIV=12,
+  BCOR=0mm,
+  headings=normal,
+  numbers=noenddot,
+  toc=flat,
+  toc=indenttext,
+  captions=tableheading,
+]{scrartcl}
+
+%═════════════════════════════════════════════════════════════════════════════
+%  PACKAGES
+%═════════════════════════════════════════════════════════════════════════════
+
+% --- Encoding & Fonts ---
+%  Font selection uses pandoc variables with sensible fallbacks.
+%  On macOS, PingFang SC + STHeiti work out of the box.
+%  On Linux, Noto Sans CJK SC is recommended.
+%  Override via pandoc -V: -V mainfont=... -V CJKmainfont=... etc.
+\usepackage{fontspec}
+\usepackage{xeCJK}
+
+% Latin fonts — Times New Roman
+$if(mainfont)$
+  \setmainfont{$mainfont$}
+$else$
+  \setmainfont{Times New Roman}[
+    BoldFont       = Times New Roman Bold,
+    ItalicFont     = Times New Roman Italic,
+    BoldItalicFont = Times New Roman Bold Italic,
+  ]
+$endif$
+
+$if(monofont)$
+  \setmonofont{$monofont$}[Scale=MatchLowercase]
+$else$
+  \IfFontExistsTF{Noto Sans Mono}{
+    \setmonofont{Noto Sans Mono}[Scale=MatchLowercase]
+  }{
+    \IfFontExistsTF{SF Mono}{
+      \setmonofont{SF Mono}[Scale=MatchLowercase]
+    }{
+      \IfFontExistsTF{Menlo}{
+        \setmonofont{Menlo}[Scale=MatchLowercase]
+      }{
+        \setmonofont{Latin Modern Mono}[Scale=MatchLowercase]
+      }
+    }
+  }
+$endif$
+
+% CJK main font (for Chinese text)
+$if(CJKmainfont)$
+  \setCJKmainfont{$CJKmainfont$}
+$else$
+  \IfFontExistsTF{PingFang SC}{
+    \setCJKmainfont{PingFang SC}[
+      UprightFont = * Regular,
+      BoldFont    = * Semibold,
+    ]
+  }{
+    \IfFontExistsTF{Noto Sans CJK SC}{
+      \setCJKmainfont{Noto Sans CJK SC}[
+        UprightFont = * Regular,
+        BoldFont    = * Bold,
+      ]
+    }{
+      \setCJKmainfont{STSong}
+    }
+  }
+$endif$
+
+% CJK monospace font
+$if(CJKmonofont)$
+  \setCJKmonofont{$CJKmonofont$}[Scale=MatchLowercase]
+$else$
+  \IfFontExistsTF{STHeiti}{
+    \setCJKmonofont{STHeiti}[Scale=MatchLowercase]
+  }{
+    \IfFontExistsTF{Noto Sans Mono CJK SC}{
+      \setCJKmonofont{Noto Sans Mono CJK SC}[Scale=MatchLowercase]
+    }{}%
+  }
+$endif$
+
+% --- Symbol fallback commands ---
+%  Some Unicode characters (⭐, ✅, 🚫, 🔴, ⚠) are missing from CJK fonts
+%  and cannot be rendered via Apple Color Emoji (bitmap format, unsupported
+%  by xelatex). The build script preprocesses the markdown to replace these
+%  with LaTeX commands defined below.
+\usepackage{amssymb}
+
+\newcommand{\hsbcstar}{$$\bigstar$$}
+\newcommand{\hsbccheck}{$$\checkmark$$}
+\newcommand{\hsbccross}{$$\times$$}
+\newcommand{\hsbcwarn}{\textbf{!}}
+\newcommand{\hsbcprohibit}{\textbf{[禁止]}}
+\newcommand{\hsbcredball}{$$\bullet$$}
+
+% --- HSBC Brand Colors ---
+\usepackage[table]{xcolor}
+\definecolor{hsbcred}{HTML}{DB0011}
+\definecolor{hsbcdark}{HTML}{333333}
+\definecolor{hsbcgray}{HTML}{666666}
+\definecolor{hsbclightgray}{HTML}{F2F2F2}
+\definecolor{hsbctablehead}{HTML}{DB0011}
+\definecolor{hsbctablerow}{HTML}{FFF5F5}
+\definecolor{hsbcline}{HTML}{CCCCCC}
+\definecolor{hsbcverbg}{HTML}{F8F8F8}
+\definecolor{hsbcstripe}{HTML}{F5F5F5}
+
+% Alternating row colors for tables
+\rowcolors{2}{hsbcstripe}{white}
+
+% --- Last page reference (for Page X/Y footer) ---
+\usepackage{lastpage}
+
+% --- Page Layout ---
+\usepackage[
+  a4paper,
+  left=2.5cm,
+  right=2.5cm,
+  top=2.8cm,
+  bottom=2.5cm,
+  headheight=1.5cm,
+  headsep=0.6cm,
+  footskip=1.2cm,
+]{geometry}
+
+% --- Headers & Footers ---
+\usepackage{scrlayer-scrpage}
+\pagestyle{scrheadings}
+\clearscrheadfoot
+
+% Header: title + HSBC logo
+\setkomafont{pagehead}{\normalfont\small\color{hsbcdark}}
+\setkomafont{pagefoot}{\normalfont\normalsize\color{hsbcdark}}
+
+\chead{%
+  \raisebox{5mm}{\textcolor{hsbcdark}{\Large\textbf{HSBC AME REGULATORY REPORTING}}}%
+  \hfill%
+  \raisebox{3mm}{\includegraphics[height=7mm]{img/hsbc-logo.png}}%
+}
+
+\cfoot{%
+  \hfill%
+  \textcolor{hsbcgray}{\footnotesize CONFIDENTIAL}%
+  \hfill%
+  Page \thepage\ / \pageref{LastPage}%
+}
+
+% --- Table of Contents ---
+\setcounter{tocdepth}{2}
+% KOMA-Script provides built-in TOC styling via tocbasic (loaded automatically)
+
+% --- Section Formatting (KOMA-Script native — no titlesec to avoid conflicts) ---
+\setkomafont{section}{\color{hsbcred}\normalfont\LARGE\bfseries}
+\setkomafont{subsection}{\color{hsbcred}\normalfont\Large\bfseries}
+\setkomafont{subsubsection}{\color{hsbcdark}\normalfont\large\bfseries}
+\setkomafont{paragraph}{\color{hsbcdark}\normalfont\normalsize\bfseries}
+\setkomafont{subparagraph}{\color{hsbcdark}\normalfont\normalsize\bfseries}
+
+% --- Tables ---
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{calc}
+\usepackage{colortbl}
+\usepackage{longtable}
+\usepackage{multirow}
+
+% longtable tuning: use full text width, compact font, less stretch
+\setlength{\LTleft}{0pt}
+\setlength{\LTright}{0pt}
+\AtBeginEnvironment{longtable}{%
+  \footnotesize
+  \renewcommand{\arraystretch}{1.15}%
+}
+
+% HSBC-style table
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}}
+
+\renewcommand{\arraystretch}{1.3}
+\arrayrulecolor{hsbcline}
+
+% --- Captions ---
+\usepackage{caption}
+\renewcommand{\tablename}{表}\renewcommand{\figurename}{图}\captionsetup{
+  font={footnotesize,color=hsbcgray},
+  labelfont={bf,color=hsbcred},
+  labelsep=quad,
+  skip=6pt,
+}
+
+% --- Code / Verbatim / ASCII Art ---
+\usepackage{fancyvrb}
+\fvset{
+  fontsize=\footnotesize,
+  baselinestretch=1.0,
+  frame=none,
+  framesep=6pt,
+  numbers=none,
+}
+
+\usepackage{tcolorbox}
+\tcbuselibrary{breakable,skins}
+\newtcolorbox{hsbccodebox}{
+  enhanced,
+  breakable,
+  colback=hsbcverbg,
+  colframe=hsbcline,
+  boxrule=0.5pt,
+  left=8pt,
+  right=8pt,
+  top=6pt,
+  bottom=6pt,
+  arc=2pt,
+  fontupper=\footnotesize\ttfamily,
+}
+
+% --- Lists ---
+% pandoc generates \tightlist for compact lists — must be defined
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+% Image sizing — prevent overflow
+\usepackage[export]{adjustbox}
+% pandoc 3.x wraps images in \pandocbounded — centre & scale to textwidth
+\providecommand{\pandocbounded}[1]{%
+  \begin{center}
+  \maxsizebox{\textwidth}{0.8\textheight}{#1}
+  \end{center}}
+% Define hsbcgold / hsbcgreen for text use
+\definecolor{hsbcgold}{HTML}{FFB81C}
+\definecolor{hsbcgreen}{HTML}{00A86B}
+\usepackage{enumitem}
+\setlist{
+  nosep,
+  leftmargin=*,
+  itemsep=2pt,
+  parsep=2pt,
+  topsep=4pt,
+}
+\setlist[itemize]{label=\textcolor{hsbcred}{\textbullet}}
+
+% --- Hyperlinks ---
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=hsbcred,
+  urlcolor=hsbcred,
+  citecolor=hsbcred,
+  pdfborder={0 0 0},
+  bookmarksnumbered=true,
+  bookmarksopen=true,
+  pdfstartview=FitH,
+}
+
+% Image search path (for xelatex to find chapters/img/)
+\graphicspath{{./}{./chapters/}{./chapters/img/}}
+
+% --- Graphics & TikZ (for title page + HSBC logo) ---
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\newcommand{\hsbclogo}{%
+  \raisebox{-0.5mm}{\includegraphics[height=8mm]{img/hsbc-logo.png}}%
+}
+\usepackage{float}  % [H] placement for figures
+\floatplacement{figure}{H}  % force all figures to stay where they appear
+
+% --- Block Quotes / Callouts ---
+\usepackage{framed}
+% pandoc 3.x environments — must be defined for code blocks & shading
+\colorlet{shadecolor}{hsbclightgray}
+\newenvironment{Shaded}{\begin{shaded}}{\end{shaded}}
+\newenvironment{Highlighting}{}{}
+\renewenvironment{leftbar}{%
+  \def\FrameCommand{%
+    \textcolor{hsbcred}{\vrule width 3pt}%
+    \hspace{10pt}%
+  }%
+  \MakeFramed{\advance\hsize-\width\FrameRestore}%
+}{%
+  \endMakeFramed
+}
+\newenvironment{hsbcnote}{%
+  \vspace{4pt}
+  \begin{leftbar}
+  \noindent
+  \footnotesize\color{hsbcgray}
+}{%
+  \end{leftbar}
+  \vspace{4pt}
+}
+
+% --- Metadata ---
+$if(title)$
+\title{\textcolor{hsbcred}{\bfseries $title$}}
+$endif$
+$if(author)$
+\author{$author$}
+$endif$
+$if(date)$
+\date{$date$}
+$endif$
+
+% --- Title Page ---
+\usepackage{titling}
+\pretitle{%
+  \begin{center}
+  \LARGE
+}
+\posttitle{%
+  \\[1.5em]
+  \textcolor{hsbcred}{\rule{0.6\textwidth}{2pt}}
+  \end{center}
+  \vspace{2em}
+}
+
+%═════════════════════════════════════════════════════════════════════════════
+%  DOCUMENT BEGIN
+%═════════════════════════════════════════════════════════════════════════════
+
+\begin{document}
+
+% --- HSBC Title Page ---
+\thispagestyle{empty}
+
+\begin{tikzpicture}[remember picture,overlay]
+  \fill[hsbcred] (current page.north west) rectangle
+    ([yshift=-4cm]current page.north east);
+  \node[anchor=north west,text=white,font=\fontsize{28}{34}\bfseries]
+    at ([xshift=2.5cm,yshift=-1.2cm]current page.north west)
+    {$if(title)$\MakeUppercase{$title$}$endif$};
+  \node[anchor=north west,text=white!80,font=\footnotesize]
+    at ([xshift=2.5cm,yshift=-3.2cm]current page.north west)
+    {\textbf{$if(author)$$author$$endif$}};
+\end{tikzpicture}
+
+\vspace*{6cm}
+
+% Report metadata box
+\begin{tcolorbox}[
+  enhanced,
+  colback=hsbclightgray,
+  colframe=hsbcred,
+  boxrule=0.8pt,
+  arc=2pt,
+  width=\textwidth,
+  left=16pt,
+  right=16pt,
+  top=12pt,
+  bottom=12pt,
+]
+{\large\bfseries\color{hsbcred} Report Metadata}\\[1em]
+{\small
+\begin{tabular}{@{}L{3.5cm} L{10cm}@{}}
+  \textbf{Ref:}  & HSBC-AME-RR-2026-001 \\
+  \textbf{Version:}  & V1.0 (Final) \\
+  \textbf{Date:}     & July 25, 2026 \\
+  \textbf{Classification:}    & \textcolor{hsbcred}{\textbf{HIGHLY CONFIDENTIAL}} — For HSBC Group AME COO/CDO/CIO \& Market COO/CDO/CIO Only \\
+  \textbf{Prepared By:}       & AME Regulatory Reporting Advisory Panel \\
+\end{tabular}
+}
+\end{tcolorbox}
+
+\vfill
+
+\begin{tcolorbox}[
+  enhanced,
+  colback=white,
+  colframe=hsbcred!20,
+  boxrule=0.5pt,
+  arc=2pt,
+  width=\textwidth,
+  left=12pt,
+  right=12pt,
+  top=8pt,
+  bottom=8pt,
+]
+{\footnotesize\color{hsbcgray}
+\textbf{© HSBC Holdings plc 2026. All Rights Reserved.}\\[2pt]
+All data sourced from HSBC Group public disclosures, official regulatory announcements, and independent industry research. Business estimates are for strategic reference only. This report does not constitute investment or business advice.
+}
+\end{tcolorbox}
+
+\newpage
+
+% --- Table of Contents ---
+\thispagestyle{empty}
+{\color{hsbcred}\Huge\bfseries\noindent Table of Contents\\[0.3em]}
+\textcolor{hsbcred}{\rule{\textwidth}{1.5pt}}
+\vspace{1em}
+
+$if(toc)$
+\tableofcontents
+$endif$
+
+\newpage
+
+% --- Main Content ---
+$body$
+
+% --- Last Page Footer ---
+\vfill
+\begin{center}
+\textcolor{hsbcred}{\rule{0.4\textwidth}{1pt}}\\[1em]
+{\footnotesize\color{hsbcgray}
+本报告由AME Regulatory Reporting Advisory Panel编制，仅供汇丰集团内部使用。\\
+© HSBC Holdings plc 2026. All Rights Reserved. \textbf{CONFIDENTIAL.}
+}
+\end{center}
+
+\end{document}
