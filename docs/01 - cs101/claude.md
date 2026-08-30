@@ -1,16 +1,4 @@
-# 使用VS CODE进行AI开发
-
-## 安装VS CODE
-
-## 安装Python插件
-
-## 安装Jupyter插件
-
-## 安装AI插件
-
-### 安装Claude 插件
-
-#### 在Claude Code 中使用DeepSeek
+# 在Claude Code 中使用DeepSeek
 
 1. 安装下面的指引设置终端参数
    https://api-docs.deepseek.com/zh-cn/quick_start/agent_integrations/claude_code
@@ -51,7 +39,7 @@
         {
             "name": "ACLAUDE_CODE_SUBAGENT_MODEL",
             "value": "deepseek-v4-flash"
-        },      
+        },  
         {
             "name": "ANTHROPIC_DEFAULT_HAIKU_MODEL",
             "value": "deepseek-v4-flash"
@@ -59,10 +47,7 @@
         {
             "name": "CLAUDE_CODE_EFFORT_LEVEL",
             "value": "max"
-        },      
+        },  
   ]
 ```
 
-## 安装其他插件
-
-## 使用VS CODE进行AI开发
