@@ -3,8 +3,8 @@ site_description: CS101 文档与知识库
 site_url: https://itcs101.github.io/CS101/
 repo_url: https://github.com/itcs101/CS101
 
-# 直接使用仓库根目录作为文档目录
-docs_dir: .
+# 文档目录（CI 中会将仓库内容复制到 docs/ 再构建）
+docs_dir: docs
 
 theme:
   name: material
