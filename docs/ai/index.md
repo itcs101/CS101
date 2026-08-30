@@ -1,6 +1,5 @@
 ---
 title: AI
-icon: material/folder-outline
 ---
 
 # AI

@@ -1,6 +1,5 @@
 ---
 title: 业务建模
-icon: material/folder-outline
 ---
 
 # 业务建模

@@ -1,8 +1,7 @@
 ---
-title: 银行运营
-icon: material/folder-outline
+title: 运营
 ---
 
-# 银行运营
+# 运营
 
 银行运营知识。

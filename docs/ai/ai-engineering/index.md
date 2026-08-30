@@ -1,6 +1,5 @@
 ---
 title: AI 工程化
-icon: material/folder-outline
 ---
 
 # AI 工程化

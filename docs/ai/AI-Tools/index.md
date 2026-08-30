@@ -1,6 +1,5 @@
 ---
 title: AI 工具
-icon: material/folder-outline
 ---
 
 # AI 工具

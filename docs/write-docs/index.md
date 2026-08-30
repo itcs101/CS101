@@ -1,6 +1,5 @@
 ---
 title: 写作
-icon: material/folder-outline
 ---
 
 # 写作

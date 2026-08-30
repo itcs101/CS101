@@ -1,8 +1,7 @@
 ---
-title: GitHub Agent
-icon: material/folder-outline
+title: Agent
 ---
 
-# GitHub Agent
+# Agent
 
 GitHub AI Agent 实践。

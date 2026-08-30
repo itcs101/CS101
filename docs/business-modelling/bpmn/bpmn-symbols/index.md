@@ -1,8 +1,7 @@
 ---
-title: BPMN 符号
-icon: material/folder-outline
+title: 符号
 ---
 
-# BPMN 符号
+# 符号
 
 BPMN 图形符号图例。

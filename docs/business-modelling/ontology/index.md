@@ -1,8 +1,7 @@
 ---
-title: 数据建模 Ontology
-icon: material/folder-outline
+title: 本体
 ---
 
-# 数据建模 Ontology
+# 本体
 
 本体建模与推理。

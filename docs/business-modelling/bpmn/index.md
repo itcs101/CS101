@@ -1,8 +1,7 @@
 ---
-title: 流程建模 BPMN
-icon: material/folder-outline
+title: BPMN
 ---
 
-# 流程建模 BPMN
+# BPMN
 
 BPMN 符号与示例。
