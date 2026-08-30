@@ -33,6 +33,7 @@ theme:
     code: JetBrains Mono
   features:
     - navigation.sections        # 顶级导航显示为分组
+    - navigation.indexes         # 目录 index.md 作为分组标题页
     - navigation.expand          # 默认展开所有分组，保留层次
     - navigation.instant         # 无刷新切换，更快
     - navigation.top             # 返回顶部按钮
@@ -80,44 +81,3 @@ exclude_docs: |
   *.docx
   *.pdf
   index.html
-
-nav:
-  - 首页: index.md
-  - CS101:
-    - cs101/cs101.md
-    - 开发环境:
-      - VSCode AI 开发: cs101/vscode-ai-dev.md
-  - AI:
-    - 大语言模型:
-      - LLM 入门: ai/LLM/LLM101.md
-    - AI 工程化:
-      - 规格驱动开发: ai/ai-engineering/speckit-openspec-superpowers.md
-      - AI 工具: ai/AI-Tools/ai-tools.md
-      - OpenClaw: ai/AI-Tools/openclaw.md
-      - OpenSec: ai/AI-Tools/opensec.md
-      - GitHub Agent 101: ai/agent101/github-agent101.md
-    - 知识图谱:
-      - BOMIS 概览: ai/knowledgeGraph/bomis.md
-      - BOMIS 本体: ai/knowledgeGraph/bomis_ontology.md
-  - 业务分析:
-    - 业务分析方法:
-      - AI 时代的业务分析: business-analysis/ba-ai.md
-    - 案例:
-      - UBO 监管: business-analysis/uboreg.md
-  - 业务建模:
-    - 流程建模 (BPMN):
-      - BPMN 符号: business-modelling/bpmn/bpmn-symbols/bpmn_symbols.md
-      - BPMN 说明: business-modelling/bpmn/bpmn_readme.md
-    - 数据建模 (Ontology):
-      - Palantir 本体: business-modelling/ontology/palantir.md
-      - 合同管理本体: business-modelling/ontology/contractManagement.md
-      - 推理引擎: business-modelling/ontology/inferenceEngine.md
-      - OWL 入门: business-modelling/ontology/owlGetstarted.md
-      - ClearChoice: business-modelling/ontology/clearchoice.md
-  - 银行业务:
-    - 银行运营: banking/bankops/bankops.md
-    - NPDD 示例: banking/npdd-sample.md
-  - 写作:
-    - 写作技巧:
-      - Markdown 技巧: write-docs/wd-markdown.md
-
