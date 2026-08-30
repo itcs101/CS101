@@ -1,0 +1,59 @@
+/* ===== CS101 知识库 自定义样式 ===== */
+
+/* 侧边栏：分组标题加粗、带主题色 */
+.md-sidebar .md-nav__item--nested > .md-nav__link {
+  font-weight: 700;
+}
+
+/* 侧边栏：子分组缩进视觉提示 */
+.md-nav .md-nav__item--nested > label.md-nav__link {
+  border-left: 2px solid transparent;
+  padding-left: 0.6rem;
+  transition: border-color 0.2s;
+}
+.md-nav .md-nav__item--nested.md-nav__item--active > label.md-nav__link {
+  border-left-color: var(--md-accent-fg-color);
+}
+
+/* 侧边栏：当前选中项高亮 */
+.md-nav__link--active {
+  font-weight: 600;
+}
+
+/* 标题栏与主题色微调 */
+.md-header {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* 内容区：卡片化代码块与提示框 */
+.md-typeset .admonition,
+.md-typeset details {
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+}
+.md-typeset code {
+  border-radius: 4px;
+}
+
+/* 首页卡片网格 */
+.grid.cards > ul > li {
+  border-radius: 10px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.grid.cards > ul > li:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+/* 首页 Hero 区域 */
+.hero {
+  padding: 2.5rem 1.5rem;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(103, 58, 183, 0.12), rgba(63, 81, 181, 0.10));
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.hero h1 {
+  margin-top: 0;
+  font-weight: 800;
+}
