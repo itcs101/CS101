@@ -1,4 +1,19 @@
-# CS 基本知识
+# AI 时代再出发
+
+## 使用提示词与 AI 对话
+
+> 免费：豆包、DeepSeek 和千问
+
+### [提示词工程指南](https://www.promptingguide.ai/zh)
+
+### CO-STAR
+
+1. [CO-STAR](https://portkey.ai/blog/what-is-costar-prompt-engineering/)
+2. [阿里云文生文Prompt指南](https://help.aliyun.com/zh/model-studio/prompt-engineering-guide)
+
+### [如何用 Claude 以 10 倍速度学会任何东西](prompts/learn-by-ai.md)
+
+### [使用AI进行深度研究](prompts/deep-research.md)
 
 ## 注册 Github.com 和购买大模型 API
 
